@@ -1,6 +1,6 @@
 package net.iesochoa.gerardodelafuente.sportcityapp.ui.screens
 
-import android.service.autofill.OnClickAction
+
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
@@ -22,11 +23,18 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -55,7 +63,11 @@ fun loginScreen(){
                 .padding(horizontal = 24.dp, vertical = 32.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            var email by remember { mutableStateOf("") }
+            var password by remember { mutableStateOf("") }
+
             Spacer(modifier = Modifier.height(32.dp))
+
 
             //Bienvenida
 
@@ -111,11 +123,17 @@ fun loginScreen(){
                     Spacer(modifier = Modifier.width(12.dp))
 
                     // Texto placeholder
-                    Text(
-                        text = "Introduce tu email o usuario",
-                        color = ColorTextSecondary,
-                        style = MaterialTheme.typography.bodyMedium,
-                        modifier = Modifier.weight(1f)
+                    TextField(
+                        value = email,
+                        onValueChange = { email = it },
+                        modifier = Modifier.weight(1f),
+                        placeholder = {
+                            Text(
+                                text = "Introduce tu email o usuario",
+                                color = ColorTextSecondary
+                            )
+                        },
+                        singleLine = true
                     )
                 }
             }
@@ -130,7 +148,7 @@ fun loginScreen(){
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            //usuario
+            //contraseña
 
             Text(
                 text = stringResource(net.iesochoa.gerardodelafuente.sportcityapp.R.string.password),
@@ -161,11 +179,21 @@ fun loginScreen(){
                     Spacer(modifier = Modifier.width(12.dp))
 
                     // Texto placeholder
-                    Text(
-                        text = stringResource(net.iesochoa.gerardodelafuente.sportcityapp.R.string.introduce_usuario),
-                        color = ColorTextSecondary,
-                        style = MaterialTheme.typography.bodyMedium,
-                        modifier = Modifier.weight(1f)
+                    TextField(
+                        value = password,
+                        onValueChange = { password = it },
+                        modifier = Modifier.weight(1f),
+                        placeholder = {
+                            Text(
+                                text = stringResource(R.string.campo_contrasena),
+                                color = ColorTextSecondary
+                            )
+                        },
+                        singleLine = true,
+                        visualTransformation = PasswordVisualTransformation(),
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Password
+                        )
                     )
                 }
             }
