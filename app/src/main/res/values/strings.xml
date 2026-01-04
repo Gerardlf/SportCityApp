@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SportCityApp</string>
+    <string name="bienvenido">Bienvenido</string>
+    <string name="subtitulo_bienvenida">Reserva tu pista, juega tu partido</string>
 </resources>
