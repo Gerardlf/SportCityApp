@@ -1,36 +1,53 @@
 package net.iesochoa.gerardodelafuente.sportcityapp.ui.screens
-import android.R
+
+import android.service.autofill.OnClickAction
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import net.iesochoa.gerardodelafuente.sportcityapp.R
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorBackground
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorError
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextSecondary
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.TextFieldBackground
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.TextFieldBorder
 
 
 @Composable
-fun loginScrenn(){
+fun loginScreen(){
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(ColorBackground))
+            .background(ColorBackground),
     ){
         Column(
             modifier = Modifier
@@ -39,6 +56,8 @@ fun loginScrenn(){
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(32.dp))
+
+            //Bienvenida
 
             Text(
                 text = stringResource(net.iesochoa.gerardodelafuente.sportcityapp.R.string.bienvenido),
@@ -50,6 +69,7 @@ fun loginScrenn(){
 
             Spacer(modifier = Modifier.height(10.dp))
 
+            //mensaje bienvenida
             Text(
                 text = stringResource(net.iesochoa.gerardodelafuente.sportcityapp.R.string.subtitulo_bienvenida),
                 color= ColorTextSecondary,
@@ -59,13 +79,146 @@ fun loginScrenn(){
 
             Spacer(modifier = Modifier.height(32.dp))
 
+            //login
 
+
+            Text(
+                text = stringResource(net.iesochoa.gerardodelafuente.sportcityapp.R.string.email_usuario),
+                color = ColorTextPrimary,
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                shape = RoundedCornerShape(24.dp),
+                color = TextFieldBackground,
+                border = BorderStroke(1.dp, TextFieldBorder)
+            ) {
+                Row(
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp, vertical = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    //Icono de usuario
+                    Icon(
+                        imageVector = Icons.Filled.Person,
+                        contentDescription = null,
+                        tint = ColorTextSecondary
+                    )
+
+                    Spacer(modifier = Modifier.width(12.dp))
+
+                    // Texto placeholder
+                    Text(
+                        text = "Introduce tu email o usuario",
+                        color = ColorTextSecondary,
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = stringResource(net.iesochoa.gerardodelafuente.sportcityapp.R.string.campo_obligatorio),
+                color = ColorError,
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            //usuario
+
+            Text(
+                text = stringResource(net.iesochoa.gerardodelafuente.sportcityapp.R.string.password),
+                color = ColorTextPrimary,
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                shape = RoundedCornerShape(24.dp),
+                color = TextFieldBackground,
+                border = BorderStroke(1.dp, TextFieldBorder)
+            ) {
+                Row(
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp, vertical = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    //Icono de contraseña
+                    Icon(
+                        imageVector = Icons.Filled.Lock,
+                        contentDescription = null,
+                        tint = ColorTextSecondary
+                    )
+
+                    Spacer(modifier = Modifier.width(12.dp))
+
+                    // Texto placeholder
+                    Text(
+                        text = stringResource(net.iesochoa.gerardodelafuente.sportcityapp.R.string.introduce_usuario),
+                        color = ColorTextSecondary,
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = stringResource(net.iesochoa.gerardodelafuente.sportcityapp.R.string.campo_obligatorio),
+                color = ColorError,
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Text(
+                text = "¿Olvidaste tu contraseña?",
+                color = ColorTextSecondary,
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier
+                    .fillMaxWidth(),
+                textAlign = TextAlign.End
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Button(
+                onClick = {},
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(53.dp),
+                shape = RoundedCornerShape(24.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = ColorPrimary
+                )
+            ) {
+                Text("Iniciar sesión",
+                    color = ColorBackground,
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold
+                    )
+
+            }
 
 
 
 
         }
     }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun LoginScreenPreview() {
 
 
+    loginScreen()
 }

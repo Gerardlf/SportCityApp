@@ -2,4 +2,8 @@
     <string name="app_name">SportCityApp</string>
     <string name="bienvenido">Bienvenido</string>
     <string name="subtitulo_bienvenida">Reserva tu pista, juega tu partido</string>
-</resources>
+    <string name="email_usuario">Email/usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="introduce_usuario">Introduce tu email o usuario</string>
+    <string name="campo_obligatorio">Campo obligatorio</string>
+    </resources>

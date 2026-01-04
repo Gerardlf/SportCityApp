@@ -20,7 +20,7 @@ val ColorWarning = Color(0xFFB45309)      // Avisos     #B45309
 val ColorError = Color(0xFFB91C1C)        // Error      #B91C1C
 
 // Fondos y texto
-val ColorBackground: Int = Color(0xFFFFFFFF)   // Fondo      #FFFFFF
+val ColorBackground = Color(0xFFFFFFFF)  // Fondo      #FFFFFF
 val ColorTextPrimary = Color(0xFF111827)  // Texto ppal #111827
 val ColorTextSecondary = Color(0xFF374151)// Texto sec. #374151
 
