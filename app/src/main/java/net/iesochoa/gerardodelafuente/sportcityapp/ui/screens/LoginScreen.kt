@@ -2,6 +2,7 @@ package net.iesochoa.gerardodelafuente.sportcityapp.ui.screens
 
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,6 +32,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -67,6 +69,15 @@ fun loginScreen(){
             var password by remember { mutableStateOf("") }
 
             Spacer(modifier = Modifier.height(32.dp))
+
+            //LOGO
+            Image(
+                painter = painterResource(R.drawable.logo),
+                contentDescription = "Logo SportCity",
+                modifier = Modifier
+                    .height(72.dp)
+            )
+            Spacer(modifier = Modifier.height(16.dp))
 
 
             //Bienvenida
