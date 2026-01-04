@@ -2,6 +2,7 @@ package net.iesochoa.gerardodelafuente.sportcityapp.ui.screens
 
 
 import androidx.compose.foundation.BorderStroke
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -26,6 +27,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -41,7 +43,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import net.iesochoa.gerardodelafuente.sportcityapp.R
+import net.iesochoa.gerardodelafuente.sportcityapp.model.LoginViewModel
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorBackground
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorError
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorPrimary
@@ -52,7 +56,13 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.TextFieldBorder
 
 
 @Composable
-fun loginScreen(){
+fun loginScreen(
+    viewModel: LoginViewModel = viewModel()
+){
+
+    val uiState by viewModel.uiState.collectAsState();
+
+
 
     Box(
         modifier = Modifier
@@ -75,7 +85,8 @@ fun loginScreen(){
                 painter = painterResource(R.drawable.logo),
                 contentDescription = "Logo SportCity",
                 modifier = Modifier
-                    .height(72.dp)
+                    .height(150.dp)
+
             )
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -196,7 +207,7 @@ fun loginScreen(){
                         modifier = Modifier.weight(1f),
                         placeholder = {
                             Text(
-                                text = stringResource(R.string.campo_contrasena),
+                                text = "Introduce tu contraseña",
                                 color = ColorTextSecondary
                             )
                         },
@@ -227,13 +238,13 @@ fun loginScreen(){
                     .fillMaxWidth(),
                 textAlign = TextAlign.End
             )
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(30.dp))
 
             Button(
                 onClick = {},
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(53.dp),
+                    .height(60.dp),
                 shape = RoundedCornerShape(24.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = ColorPrimary
@@ -241,8 +252,10 @@ fun loginScreen(){
             ) {
                 Text("Iniciar sesión",
                     color = ColorBackground,
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Bold
+//                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp,
+                    letterSpacing = 0.5.sp
                     )
 
             }
