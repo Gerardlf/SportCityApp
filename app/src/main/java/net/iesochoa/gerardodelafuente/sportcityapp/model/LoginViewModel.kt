@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import net.iesochoa.gerardodelafuente.sportcityapp.data.LoginUiState
 
-class LoginViewModel: ViewModel() {
+class LoginViewModel : ViewModel() {
 
 
     // Estado privado solo modificable aqui
@@ -34,8 +34,28 @@ class LoginViewModel: ViewModel() {
 
 
     fun onLoginClicked() {
-        //Todo!!!!!!!!!!!!!!!!
-        // val email = _uiState.value.email
-        // val password = _uiState.value.password
+        val current = uiState.value
+
+        var emailError: String? = null
+        var passwordError: String? = null
+
+        if (current.email.isBlank()) {
+            emailError = "El email es obligatorio"
+        }
+        if (current.password.isBlank()) {
+            passwordError = "La contraseña es obligatoria"
+        }
+
+        _uiState.update { estado ->
+            estado.copy(
+                emailError = emailError,
+                passwordError = passwordError
+            )
+
+        }
+        if (emailError != null || passwordError != null) {
+            return
+        }
+
     }
 }

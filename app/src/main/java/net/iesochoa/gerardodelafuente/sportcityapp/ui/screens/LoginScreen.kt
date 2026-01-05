@@ -161,13 +161,16 @@ fun loginScreen(
                 }
             }
             Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = stringResource(net.iesochoa.gerardodelafuente.sportcityapp.R.string.campo_obligatorio),
-                color = ColorError,
-                style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
+
+            uiState.emailError?.let { errorTexto->
+                Text(
+                    text = errorTexto,
+                    color = ColorError,
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                )
+            }
 
             Spacer(modifier = Modifier.height(20.dp))
 
@@ -221,13 +224,16 @@ fun loginScreen(
                 }
             }
             Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = stringResource(net.iesochoa.gerardodelafuente.sportcityapp.R.string.campo_obligatorio),
-                color = ColorError,
-                style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
+
+            uiState.passwordError?.let { errorTexto->
+                Text(
+                    text = errorTexto,
+                    color = ColorError,
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                )
+            }
 
             Spacer(modifier = Modifier.height(12.dp))
 
