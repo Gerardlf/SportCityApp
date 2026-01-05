@@ -60,8 +60,7 @@ fun loginScreen(
     viewModel: LoginViewModel = viewModel()
 ){
 
-    val uiState by viewModel.uiState.collectAsState();
-
+    val uiState by viewModel.uiState.collectAsState()
 
 
     Box(
@@ -75,8 +74,8 @@ fun loginScreen(
                 .padding(horizontal = 24.dp, vertical = 32.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            var email by remember { mutableStateOf("") }
-            var password by remember { mutableStateOf("") }
+//            var email by remember { mutableStateOf("") }
+//            var password by remember { mutableStateOf("") }
 
             Spacer(modifier = Modifier.height(32.dp))
 
@@ -146,8 +145,10 @@ fun loginScreen(
 
                     // Texto placeholder
                     TextField(
-                        value = email,
-                        onValueChange = { email = it },
+                        value = uiState.email,
+                        onValueChange = { newEmail->
+                            viewModel.onEmailChanged(newEmail)
+                        },
                         modifier = Modifier.weight(1f),
                         placeholder = {
                             Text(
@@ -202,8 +203,8 @@ fun loginScreen(
 
                     // Texto placeholder
                     TextField(
-                        value = password,
-                        onValueChange = { password = it },
+                        value = uiState.password,
+                        onValueChange = { newPassword -> viewModel.onPasswordChanged(newPassword) },
                         modifier = Modifier.weight(1f),
                         placeholder = {
                             Text(
@@ -241,7 +242,9 @@ fun loginScreen(
             Spacer(modifier = Modifier.height(30.dp))
 
             Button(
-                onClick = {},
+                onClick = {
+                    viewModel.onLoginClicked()
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(60.dp),
