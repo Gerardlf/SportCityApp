@@ -1,7 +1,7 @@
 package net.iesochoa.gerardodelafuente.sportcityapp.ui.screens
 
-import android.R
-import android.widget.Space
+import androidx.annotation.RequiresPermission
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,124 +12,307 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Event
+import androidx.compose.material.icons.filled.Help
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.SportsBasketball
+import androidx.compose.material.icons.filled.SportsSoccer
+import androidx.compose.material.icons.filled.SportsTennis
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import net.iesochoa.gerardodelafuente.sportcityapp.R
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.Components.BottomNavBar
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorBackground
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorSecondary
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorSuccess
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextSecondary
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorWarning
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.TextFieldBackground
-import java.nio.file.WatchEvent
+
 
 @Composable
 fun HomeScreen() {
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(ColorBackground)
     ) {
-        Column(
+        Box(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(top = 60.dp, bottom = 24.dp, start = 24.dp, end = 24.dp),
-            horizontalAlignment = Alignment.Start
+                .weight(1f)
+                .fillMaxWidth()
         ) {
-            //TextoSport city
-            Row(
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
+                    .fillMaxSize()
+                    .padding(top = 60.dp, bottom = 24.dp, start = 24.dp, end = 24.dp),
+                horizontalAlignment = Alignment.Start
             ) {
-                Text(
-                    text = "Sport",
-                    color = ColorPrimary,
-                    fontSize = 40.sp,
-                    fontWeight = FontWeight.Bold,
-                )
-                Text(
-                    text = "City",
-                    color = ColorSecondary,
-                    fontSize = 40.sp,
-                    fontWeight = FontWeight.Bold,
-                )
-            }
-
-            Spacer(modifier = Modifier.height(30.dp))
-            Text(
-                text = "Inicio",
-                color = ColorTextPrimary,
-                fontSize = 30.sp,
-                fontWeight = FontWeight.Bold,
-            )
-            Spacer(modifier = Modifier.height(20.dp))
-
-            //Frase
-            Text(
-                text = "\"Tu mejor partido empieza aquí.\nReserva y conquista la pista\"",
-                color= ColorTextSecondary,
-                style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
-                textAlign = TextAlign.Center
-            )
-
-            Spacer(modifier = Modifier.height(30.dp))
-
-            Text(
-                text = "¿Que te apetece jugar hoy?",
-                color= ColorTextPrimary,
-                style = MaterialTheme.typography.titleMedium
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(90.dp),
-                shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = TextFieldBackground
-                )
-            ) {
-                Box(
+                //TextoSport city
+                Row(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .padding(16.dp),
-                    contentAlignment = Alignment.CenterStart
-                ){
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center
+                ) {
                     Text(
-                        text = "Fútbol 7",
-                        color = ColorTextPrimary,
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold
+                        text = "Sport",
+                        color = ColorPrimary,
+                        fontSize = 40.sp,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    Text(
+                        text = "City",
+                        color = ColorSecondary,
+                        fontSize = 40.sp,
+                        fontWeight = FontWeight.Bold,
                     )
                 }
 
+                Spacer(modifier = Modifier.height(30.dp))
+                Text(
+                    text = "Inicio",
+                    color = ColorTextPrimary,
+                    fontSize = 30.sp,
+                    fontWeight = FontWeight.Bold,
+                )
+                Spacer(modifier = Modifier.height(20.dp))
 
+                //Frase
+                Text(
+                    text = "\"Tu mejor partido empieza aquí.\nReserva y conquista la pista\"",
+                    color = ColorTextSecondary,
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    textAlign = TextAlign.Center
+                )
+
+                Spacer(modifier = Modifier.height(30.dp))
+
+                Text(
+                    text = "¿Que te apetece jugar hoy?",
+                    color = ColorTextPrimary,
+                    style = MaterialTheme.typography.titleMedium
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(90.dp),
+                    shape = RoundedCornerShape(20.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = ColorSuccess   //transparent
+                    )
+                ) {
+                    Box(
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        //                    Image(
+                        //                        painter = painterResource(R.drawable.futbol),
+                        //                        contentDescription = "Pistas de futbol",
+                        //                        modifier = Modifier.matchParentSize(),
+                        //                        contentScale = ContentScale.Crop
+                        //                    )
+
+                        Box(
+                            modifier = Modifier
+                                .matchParentSize()
+                                .background(Color.Black.copy(alpha = 0.25f))
+                        )
+                        Box(
+                            modifier = Modifier
+                                .matchParentSize()
+                                .padding(start = 16.dp),
+                            contentAlignment = Alignment.CenterStart
+                        ) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Filled.SportsSoccer,
+                                    contentDescription = "Icono fútbol",
+                                    tint = ColorBackground
+                                )
+
+                                Spacer(modifier = Modifier.width(12.dp))
+                                Text(
+                                    text = "Fúbol 7",
+                                    color = Color.White,
+                                    style = MaterialTheme.typography.titleLarge,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                        }
+                    }
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+                // TENIS
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(90.dp),
+                    shape = RoundedCornerShape(20.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = ColorWarning   // naranja
+                    )
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(16.dp),
+                        contentAlignment = Alignment.CenterStart
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.SportsTennis,
+                                contentDescription = "Icono tenis",
+                                tint = ColorBackground
+                            )
+
+                            Spacer(modifier = Modifier.width(12.dp))
+
+                            Text(
+                                text = "Tenis",
+                                color = ColorBackground,
+                                style = MaterialTheme.typography.titleLarge,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                // PADEL
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(90.dp),
+                    shape = RoundedCornerShape(20.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = ColorPrimary  // azul
+                    )
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(16.dp),
+                        contentAlignment = Alignment.CenterStart
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.SportsTennis,   // reutilizamos tenis para padel
+                                contentDescription = "Icono pádel",
+                                tint = ColorBackground
+                            )
+
+                            Spacer(modifier = Modifier.width(12.dp))
+
+                            Text(
+                                text = "Padel",
+                                color = ColorBackground,
+                                style = MaterialTheme.typography.titleLarge,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                    }
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+
+                // BASKETBALL
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(90.dp),
+                    shape = RoundedCornerShape(20.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = ColorSecondary   // morado
+                    )
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(16.dp),
+                        contentAlignment = Alignment.CenterStart
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.SportsBasketball,
+                                contentDescription = "Icono baloncesto",
+                                tint = ColorBackground
+                            )
+
+                            Spacer(modifier = Modifier.width(12.dp))
+
+                            Text(
+                                text = "Basketball",
+                                color = ColorBackground,
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                    }
+                }
             }
-
-
         }
-
-
+        BottomNavBar(modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 25.dp))
     }
 }
+
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun HomeScreenPreview() {
     HomeScreen()
 }
+//@Preview(showBackground = true)
+//@Composable
+//fun FutbolImagePreview() {
+//    Box(
+//        modifier = Modifier
+//            .size(120.dp)
+//            .background(Color.Gray),
+//        contentAlignment = Alignment.Center
+//    ) {
+//        Image(
+//            painter = painterResource(id = R.drawable.futbolinicio),
+//            contentDescription = null,
+//            modifier = Modifier.fillMaxSize(),
+//            contentScale = ContentScale.Crop
+//        )
+//    }
+//}
