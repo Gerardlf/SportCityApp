@@ -1,11 +1,11 @@
-package net.iesochoa.gerardodelafuente.sportcityapp.model
+package net.iesochoa.gerardodelafuente.sportcityapp.ui.viewModel
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import net.iesochoa.gerardodelafuente.sportcityapp.data.LoginUiState
+import net.iesochoa.gerardodelafuente.sportcityapp.Model.LoginUiState
 
 class LoginViewModel : ViewModel() {
 
