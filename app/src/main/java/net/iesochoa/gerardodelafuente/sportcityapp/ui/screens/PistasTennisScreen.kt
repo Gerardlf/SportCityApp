@@ -18,6 +18,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.SportsTennis
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -37,6 +38,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.Components.BottomNavBar
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.Components.PistaCard
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorBackground
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorError
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorWarning
@@ -84,30 +86,58 @@ fun PistasTennisScreen(
 
                 Spacer(modifier = Modifier.height(40.dp))
 
-//                //Probando viewmodel
-//                Text(
-//                    text = "Pistas cargadas desde el viewmodel: ${uiState.pistas.size}",
-//                    color = ColorTextSecondary,
-//                    style = MaterialTheme.typography.bodyMedium
-//                )
+                //Aqui deberia salir un spinner si esta cargando los datos
 
-                LazyColumn(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                    items(uiState.pistas){pista ->
-                        PistaCard(
-                            pista = pista,
-                            backgroundColor = ColorWarning,
-                            icono = Icons.Filled.SportsTennis,
+                when {
+                    uiState.isLoading -> {
+
+                        Box(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(90.dp)
-                                .padding(vertical = 8.dp)
-                        )
+                                .padding(top = 32.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            CircularProgressIndicator(
+                                color = ColorPrimary
+                            )
+                        }
                     }
 
+                    uiState.errorMessage != null -> {
+                        uiState.errorMessage?.let { errorTexto ->
+                            Text(
+                                text = errorTexto,
+                                color = ColorError,
+                                style = MaterialTheme.typography.bodyMedium
+                            )
+                        }
+
+                    }
+
+                    else -> {
+                        LazyColumn(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalArrangement = Arrangement.spacedBy(12.dp)
+                        ) {
+                            items(uiState.pistas) { pista ->
+                                PistaCard(
+                                    pista = pista,
+                                    backgroundColor = ColorWarning,
+                                    icono = Icons.Filled.SportsTennis,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(90.dp)
+                                        .padding(vertical = 8.dp),
+                                    onClick = { //Todo falta accion boton a detalles!!!
+                                    }
+
+                                )
+                            }
+                        }
+                    }
                 }
+
+
 //                //Tarjetas de cada pista
 //
 //                Card(
