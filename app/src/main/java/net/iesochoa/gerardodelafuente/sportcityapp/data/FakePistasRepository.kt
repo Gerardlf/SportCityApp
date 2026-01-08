@@ -1,6 +1,6 @@
 package net.iesochoa.gerardodelafuente.sportcityapp.data
 
-import net.iesochoa.gerardodelafuente.sportcityapp.Model.Pista
+import net.iesochoa.gerardodelafuente.sportcityapp.model.Pista
 
 class FakePistasRepository : PistasRepository {
     override suspend fun getPistasTenis(): List<Pista> {

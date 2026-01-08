@@ -1,4 +1,4 @@
-package net.iesochoa.gerardodelafuente.sportcityapp.Model
+package net.iesochoa.gerardodelafuente.sportcityapp.model
 
 data class LoginUiState(
     val email: String = "",

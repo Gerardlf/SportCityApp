@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import net.iesochoa.gerardodelafuente.sportcityapp.Model.PistasUistate
+import net.iesochoa.gerardodelafuente.sportcityapp.model.PistasUistate
 import net.iesochoa.gerardodelafuente.sportcityapp.data.FakePistasRepository
 import net.iesochoa.gerardodelafuente.sportcityapp.data.PistasRepository
 

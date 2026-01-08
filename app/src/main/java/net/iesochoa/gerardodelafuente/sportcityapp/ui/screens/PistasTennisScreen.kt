@@ -10,9 +10,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.SportsTennis
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -32,11 +35,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.Components.BottomNavBar
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.Components.PistaCard
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorBackground
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextPrimary
-import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextSecondary
-import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.TextFieldBackground
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorWarning
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.viewModel.PistasViewModel
 
 @Composable
@@ -81,46 +84,61 @@ fun PistasTennisScreen(
 
                 Spacer(modifier = Modifier.height(40.dp))
 
-                //Probando viewmodel
-                Text(
-                    text = "Pistas cargadas desde el viewmodel: ${uiState.pistas.size}",
-                    color = ColorTextSecondary,
-                    style = MaterialTheme.typography.bodyMedium
-                )
+//                //Probando viewmodel
+//                Text(
+//                    text = "Pistas cargadas desde el viewmodel: ${uiState.pistas.size}",
+//                    color = ColorTextSecondary,
+//                    style = MaterialTheme.typography.bodyMedium
+//                )
 
-
-
-                //Tarjetas de cada pista
-
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(90.dp),
-                    shape = RoundedCornerShape(16.dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = TextFieldBackground
-                    )
+                LazyColumn(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(16.dp),
-                        verticalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = "Pista tenis 1",
-                            color = ColorTextPrimary,
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold
-                        )
-
-                        Text(
-                            text = "Cubierta · 20€/hora",
-                            color = ColorTextSecondary,
-                            style = MaterialTheme.typography.bodyMedium
+                    items(uiState.pistas){pista ->
+                        PistaCard(
+                            pista = pista,
+                            backgroundColor = ColorWarning,
+                            icono = Icons.Filled.SportsTennis,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(90.dp)
+                                .padding(vertical = 8.dp)
                         )
                     }
+
                 }
+//                //Tarjetas de cada pista
+//
+//                Card(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .height(90.dp),
+//                    shape = RoundedCornerShape(16.dp),
+//                    colors = CardDefaults.cardColors(
+//                        containerColor = TextFieldBackground
+//                    )
+//                ) {
+//                    Column(
+//                        modifier = Modifier
+//                            .fillMaxSize()
+//                            .padding(16.dp),
+//                        verticalArrangement = Arrangement.SpaceBetween
+//                    ) {
+//                        Text(
+//                            text = "Pista tenis 1",
+//                            color = ColorTextPrimary,
+//                            style = MaterialTheme.typography.titleMedium,
+//                            fontWeight = FontWeight.Bold
+//                        )
+//
+//                        Text(
+//                            text = "Cubierta · 20€/hora",
+//                            color = ColorTextSecondary,
+//                            style = MaterialTheme.typography.bodyMedium
+//                        )
+//                    }
+//                }
 
 
             }

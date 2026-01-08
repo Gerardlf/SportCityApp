@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import net.iesochoa.gerardodelafuente.sportcityapp.Model.LoginUiState
+import net.iesochoa.gerardodelafuente.sportcityapp.model.LoginUiState
 
 class LoginViewModel : ViewModel() {
 
