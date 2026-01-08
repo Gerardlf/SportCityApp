@@ -81,6 +81,15 @@ fun PistasTennisScreen(
 
                 Spacer(modifier = Modifier.height(40.dp))
 
+                //Probando viewmodel
+                Text(
+                    text = "Pistas cargadas desde el viewmodel: ${uiState.pistas.size}",
+                    color = ColorTextSecondary,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+
+
+
                 //Tarjetas de cada pista
 
                 Card(

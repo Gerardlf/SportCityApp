@@ -2,7 +2,7 @@ package net.iesochoa.gerardodelafuente.sportcityapp.data
 
 import net.iesochoa.gerardodelafuente.sportcityapp.Model.Pista
 
-class FakePistasRepository: PistasRepository {
+class FakePistasRepository : PistasRepository {
     override suspend fun getPistasTenis(): List<Pista> {
         return listOf(
             Pista(
@@ -21,7 +21,7 @@ class FakePistasRepository: PistasRepository {
                 id = 3,
                 nombre = "Pista tenis 3",
                 tipo = "Cubierta",
-                precioHora = 22.0
+                precioHora = 19.0
             )
         )
     }
