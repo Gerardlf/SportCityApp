@@ -19,6 +19,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusModifier
@@ -28,15 +30,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.Components.BottomNavBar
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorBackground
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextSecondary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.TextFieldBackground
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.viewModel.PistasViewModel
 
 @Composable
-fun PistasTennisScreen() {
+fun PistasTennisScreen(
+    viewModel: PistasViewModel = viewModel()
+) {
+    val uiState by viewModel.uiState.collectAsState()
 
 
     Column(
@@ -56,12 +63,12 @@ fun PistasTennisScreen() {
             ) {
 
                 //Flecha atras
-                    Icon(
-                        imageVector = Icons.Filled.ArrowBack,
-                        contentDescription = "Volver atras",
-                        tint = ColorPrimary
-                    )
-                    Spacer(modifier = Modifier.height(40.dp))
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = "Volver atras",
+                    tint = ColorPrimary
+                )
+                Spacer(modifier = Modifier.height(40.dp))
                 //Titulo
                 Text(
                     text = "Pistas Tenis",
@@ -105,8 +112,6 @@ fun PistasTennisScreen() {
                         )
                     }
                 }
-
-
 
 
             }
