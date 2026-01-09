@@ -1,6 +1,7 @@
 package net.iesochoa.gerardodelafuente.sportcityapp.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,6 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.Components.BottomNavBar
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.Components.PistaCard
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorBackground
@@ -46,6 +48,7 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.viewModel.PistasViewModel
 
 @Composable
 fun PistasTennisScreen(
+    navController: NavController,
     viewModel: PistasViewModel = viewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -71,7 +74,11 @@ fun PistasTennisScreen(
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
                     contentDescription = "Volver atras",
-                    tint = ColorPrimary
+                    tint = ColorPrimary,
+                    modifier = Modifier
+                        .clickable{
+                            navController.popBackStack()
+                        }
                 )
                 Spacer(modifier = Modifier.height(40.dp))
                 //Titulo
@@ -176,14 +183,14 @@ fun PistasTennisScreen(
         BottomNavBar(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 20.dp)
+                .padding(bottom = 40.dp)
         )
     }
 }
 
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun PistasTenisScreenPreview() {
-    PistasTennisScreen()
-}
+//@Preview(showBackground = true, showSystemUi = true)
+//@Composable
+//fun PistasTenisScreenPreview() {
+//    PistasTennisScreen()
+//}

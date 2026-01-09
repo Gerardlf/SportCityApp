@@ -42,8 +42,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import net.iesochoa.gerardodelafuente.sportcityapp.R
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.Components.BottomNavBar
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.navigation.ScreenNavigation
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorBackground
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorSecondary
@@ -55,7 +57,9 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.TextFieldBackground
 
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    navController: NavController
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -172,6 +176,7 @@ fun HomeScreen() {
                     }
                 }
                 Spacer(modifier = Modifier.height(16.dp))
+
                 // TENIS
                 Card(
                     modifier = Modifier
@@ -180,7 +185,10 @@ fun HomeScreen() {
                     shape = RoundedCornerShape(20.dp),
                     colors = CardDefaults.cardColors(
                         containerColor = ColorWarning   // naranja
-                    )
+                    ),
+                    onClick = {
+                        navController.navigate(ScreenNavigation.PistasTenis.route)
+                    }
                 ) {
                     Box(
                         modifier = Modifier
@@ -289,16 +297,16 @@ fun HomeScreen() {
         }
         BottomNavBar(modifier = Modifier
             .fillMaxWidth()
-            .padding(bottom = 25.dp))
+            .padding(bottom = 40.dp))
     }
 }
 
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun HomeScreenPreview() {
-    HomeScreen()
-}
+//@Preview(showBackground = true, showSystemUi = true)
+//@Composable
+//fun HomeScreenPreview() {
+//    HomeScreen()
+//}
 //@Preview(showBackground = true)
 //@Composable
 //fun FutbolImagePreview() {

@@ -40,7 +40,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import net.iesochoa.gerardodelafuente.sportcityapp.R
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.navigation.ScreenNavigation
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.viewModel.LoginViewModel
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorBackground
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorError
@@ -53,6 +55,7 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.TextFieldBorder
 
 @Composable
 fun loginScreen(
+    navController: NavController,
     viewModel: LoginViewModel = viewModel()
 ){
 
@@ -246,6 +249,17 @@ fun loginScreen(
             Button(
                 onClick = {
                     viewModel.onLoginClicked()
+                    //TODO NAVEGACION CUANDO TENGA AUTENTICACION
+                    if (uiState.email.isNotBlank() &&uiState.password.isNotBlank()){
+                        navController.navigate(ScreenNavigation.Home.route){
+
+                    //PARA QUITAR LA PANTALLA DE LOGIN DE LA PILA DE NAVEGACION
+                            popUpTo(ScreenNavigation.Login.route){
+                                inclusive=true
+                            }
+                        }
+                    }
+
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -272,10 +286,10 @@ fun loginScreen(
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun LoginScreenPreview() {
-
-
-    loginScreen()
-}
+//@Preview(showBackground = true, showSystemUi = true)
+//@Composable
+//fun LoginScreenPreview() {
+//
+//
+//    loginScreen()
+//}
