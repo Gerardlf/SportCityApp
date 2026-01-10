@@ -13,6 +13,13 @@ sealed class ScreenNavigation(val route: String){
     //pantalla de listado de pistas de tenis
     object PistasTenis: ScreenNavigation("pistas_tenis")
 
+    //pantalla detalle de pista
+    object DetallePista: ScreenNavigation("detalle_pista/{pistaId}"){
+        fun crearRuta(pistaId: Int) = "detalle_pista/$pistaId"
+    }
+    object ReservaForm : ScreenNavigation("reserva_formulario/{pistaId}") {
+        fun createRoute(pistaId: Int) = "reserva_formulario/$pistaId"
+    }
 
 
 
