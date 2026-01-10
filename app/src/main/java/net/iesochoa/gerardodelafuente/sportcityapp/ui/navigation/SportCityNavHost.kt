@@ -11,6 +11,7 @@ import androidx.navigation.navArgument
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.DetallePistaScreen
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.HomeScreen
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.PistasTennisScreen
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.ReservaFormScreen
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.loginScreen
 
 @Composable

@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.navigation.ScreenNavigation
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorBackground
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorError
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorPrimary
@@ -161,6 +162,7 @@ fun DetallePistaScreen(
             Spacer(modifier = Modifier.height(40.dp))
             Button(
                 onClick = {
+                    navController.navigate(ScreenNavigation.ReservaForm.createRoute(pistaId))
 
                 },
                 modifier = Modifier
