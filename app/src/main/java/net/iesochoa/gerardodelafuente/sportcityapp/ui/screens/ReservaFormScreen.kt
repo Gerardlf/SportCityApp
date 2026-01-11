@@ -33,21 +33,28 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorBackground
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorError
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextSecondary
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.viewModel.ReservasViewModel
 
 @Composable
 fun ReservaFormScreen(
     navController: NavController,
-    pistaId: Int
+    pistaId: Int,
+    pistaNombre: String,
+    viewModel: ReservasViewModel = viewModel()
 ) {
     var nombre by remember { mutableStateOf("") }
     var telefono by remember { mutableStateOf("") }
     var comentario by remember { mutableStateOf("") }
+    var nombreError by remember { mutableStateOf<String?>(null) }
+    var telefonoError by remember { mutableStateOf<String?>(null) }
 
     Column(
         modifier = Modifier
@@ -114,6 +121,14 @@ fun ReservaFormScreen(
             modifier = Modifier.fillMaxWidth(),
             singleLine = true
         )
+        // si hay algun error en el nombre muestro un mensaje al usuario
+        nombreError?.let { errorText ->
+            Text(
+                text = errorText,
+                color = ColorError,
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -133,6 +148,14 @@ fun ReservaFormScreen(
                 keyboardType = KeyboardType.Phone
             )
         )
+        //si hay algun error en el telefono muestro un mensaje de error
+        telefonoError?.let { errorText ->
+            Text(
+                text = errorText,
+                color = ColorError,
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -156,12 +179,46 @@ fun ReservaFormScreen(
 
         Button(
             onClick = {
-                // Aquí de momento vuelvo atras porque no tengo donde guardar
+
+                //reinicio los errores
+                nombreError = null
+                telefonoError = null
+
+                var hayUnError = false
+
+                //compruebo nombre y telefofno
+                if (nombre.isBlank()) {
+                    nombreError = "El nombre es obligatorio"
+                    hayUnError = true
+                }
+                if (telefono.isBlank()) {
+                    telefonoError = "El teléfono es obligatorio"
+                    hayUnError = true
+                }
+                if (!hayUnError) {
+
+
+                    // TODO Aquí de momento vuelvo atras porque no tengo donde guardar
+                    navController.popBackStack()
+                }
+                // 5. Crear la reserva en el ViewModel / repositorio
+                viewModel.crearReserva(
+                    pistaId = pistaId,
+                    pistaNombre = pistaNombre,
+
+
+                    // pongo algun valor fijo de momento
+                    fecha = "3 de diciembre",   // TODO: sustituir por fecha real
+                    hora = "12:00",             // TODO: sustituir por hora real
+                    nombreCliente = nombre,
+                    telefonoCliente = telefono,
+                    comentario = comentario.ifBlank { null }
+                )
                 navController.popBackStack()
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(56.dp),
+                .height(65.dp),
             shape = RoundedCornerShape(24.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = ColorPrimary
@@ -178,15 +235,15 @@ fun ReservaFormScreen(
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun ReservaFormScreenPreview() {
-    val navController = rememberNavController()
-    ReservaFormScreen(
-        navController = navController,
-        pistaId = 1
-    )
-}
+//@Preview(showBackground = true, showSystemUi = true)
+//@Composable
+//fun ReservaFormScreenPreview() {
+//    val navController = rememberNavController()
+//    ReservaFormScreen(
+//        navController = navController,
+//        pistaId = 1
+//    )
+//}
 
 
 
