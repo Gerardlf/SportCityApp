@@ -8,6 +8,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.ConfirmacionReservaScreen
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.DetallePistaScreen
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.HomeScreen
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.MisReservasScreen
@@ -53,7 +54,7 @@ fun SportCityNavHost(
 
         }
 
-
+        //pantalla formulario
         composable(
             route = ScreenNavigation.ReservaForm.route,
             arguments = listOf(
@@ -67,10 +68,36 @@ fun SportCityNavHost(
                 pistaId = pistaId,
             )
         }
+
+        //pantalla mis reservas
+
         composable(
             ScreenNavigation.MisReservas.route
         ) {
             MisReservasScreen(navController = navController)
+        }
+
+
+        //pantalla confirmacion reserva
+
+        composable(
+            route = ScreenNavigation.ConfirmacionReserva.route,
+            arguments = listOf(
+                navArgument("deporte") { type = NavType.StringType },
+                navArgument("pistaNombre") { type = NavType.StringType },
+                navArgument("hora") { type = NavType.StringType }
+            )
+        ) { backStackEntry ->
+            val deporte = backStackEntry.arguments?.getString("deporte") ?: ""
+            val pistaNombre = backStackEntry.arguments?.getString("pistaNombre") ?: ""
+            val hora = backStackEntry.arguments?.getString("hora") ?: ""
+
+            ConfirmacionReservaScreen(
+                navController = navController,
+                deporte = deporte,
+                pistaNombre = pistaNombre,
+                hora = hora
+            )
         }
 
 

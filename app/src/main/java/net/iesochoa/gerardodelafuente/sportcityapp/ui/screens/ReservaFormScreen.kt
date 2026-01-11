@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.navigation.ScreenNavigation
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorBackground
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorError
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorPrimary
@@ -197,24 +198,37 @@ fun ReservaFormScreen(
                 }
                 if (!hayUnError) {
 
-
-                    // TODO Aquí de momento vuelvo atras porque no tengo donde guardar
                     navController.popBackStack()
                 }
-                // 5. Crear la reserva en el ViewModel / repositorio
+
+                //TODO esto tengo que cambiatlo luego , ahora mismo son fijos para probar
+
+                val deporte = "Tenis"
+                val nombrePista = "Pista tenis $pistaId"
+                val horaSelecionada = "12:00"
+                val fecha ="3 de diciembre"
+
+
+
+                // 5. Creao la reserva en el ViewModel - repositorio
                 viewModel.crearReserva(
                     pistaId = pistaId,
-                    pistaNombre = "pistaNombre",
+                    pistaNombre = nombrePista,
 
 
                     // pongo algun valor fijo de momento para ir probando
-                    fecha = "3 de diciembre",   // TODO: sustituir por fecha real
-                    hora = "12:00",             // TODO: sustituir por hora real
+                    fecha = fecha,
+                    hora = horaSelecionada,
                     nombreCliente = nombre,
                     telefonoCliente = telefono,
                     comentario = comentario.ifBlank { null }
                 )
-                navController.popBackStack()
+                navController.navigate(
+                    ScreenNavigation.ConfirmacionReserva.crearRuta(
+                        deporte = deporte,
+                        pistaNombre = nombrePista,
+                        hora = horaSelecionada
+                    ))
             },
             modifier = Modifier
                 .fillMaxWidth()
