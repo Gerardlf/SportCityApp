@@ -3,6 +3,8 @@ package net.iesochoa.gerardodelafuente.sportcityapp.ui.viewModel
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import net.iesochoa.gerardodelafuente.sportcityapp.data.FakeReservasRepository
 import net.iesochoa.gerardodelafuente.sportcityapp.model.Reserva
@@ -12,6 +14,7 @@ class ReservasViewModel : ViewModel() {
     private val reservasRepository = FakeReservasRepository
 
     private val _uiState = MutableStateFlow(ReservasUiState())
+    val uiState: StateFlow<ReservasUiState> = _uiState.asStateFlow()
 
     // Al iniciar, cojo el repo vacio
     init {

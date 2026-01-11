@@ -25,6 +25,6 @@ val ColorTextPrimary = Color(0xFF111827)  // Texto ppal #111827
 val ColorTextSecondary = Color(0xFF374151)// Texto sec. #374151
 
 // Campos de texto
-val TextFieldBackground = Color(0xFFF3F4F6) // Fondo campo   #F3F4F6
+val TextFieldBackground = Color(0xFF848688) // Fondo campo   #F3F4F6
 val TextFieldBorder = Color(0xFFD1D5DB)     // Borde campo   #D1D5DB
 val TextFieldText = Color(0xFF111827)       // Texto campo   #111827
