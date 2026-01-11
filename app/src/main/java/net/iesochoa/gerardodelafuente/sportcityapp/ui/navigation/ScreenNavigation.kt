@@ -20,6 +20,7 @@ sealed class ScreenNavigation(val route: String){
     object ReservaForm : ScreenNavigation("reserva_formulario/{pistaId}") {
         fun createRoute(pistaId: Int) = "reserva_formulario/$pistaId"
     }
+    object MisReservas : ScreenNavigation("mis_reservas")
 
 
 

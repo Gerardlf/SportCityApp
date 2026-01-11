@@ -47,7 +47,7 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.viewModel.ReservasViewMode
 fun ReservaFormScreen(
     navController: NavController,
     pistaId: Int,
-    pistaNombre: String,
+
     viewModel: ReservasViewModel = viewModel()
 ) {
     var nombre by remember { mutableStateOf("") }
@@ -204,10 +204,10 @@ fun ReservaFormScreen(
                 // 5. Crear la reserva en el ViewModel / repositorio
                 viewModel.crearReserva(
                     pistaId = pistaId,
-                    pistaNombre = pistaNombre,
+                    pistaNombre = "pistaNombre",
 
 
-                    // pongo algun valor fijo de momento
+                    // pongo algun valor fijo de momento para ir probando
                     fecha = "3 de diciembre",   // TODO: sustituir por fecha real
                     hora = "12:00",             // TODO: sustituir por hora real
                     nombreCliente = nombre,

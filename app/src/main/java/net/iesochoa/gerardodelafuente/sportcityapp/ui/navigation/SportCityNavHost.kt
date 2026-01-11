@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.DetallePistaScreen
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.HomeScreen
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.MisReservasScreen
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.PistasTennisScreen
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.ReservaFormScreen
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.loginScreen
@@ -37,17 +38,17 @@ fun SportCityNavHost(
             PistasTennisScreen(navController = navController)
         }
         //pantalla detallePista
-        composable(route = ScreenNavigation.DetallePista.route, arguments = listOf(
-            navArgument("pistaId"){
-                type= NavType.IntType
-            }
-        )){
-            backStackEntry ->
-            val pistaId=backStackEntry.arguments?.getInt("pistaId") ?: -1
+        composable(
+            route = ScreenNavigation.DetallePista.route, arguments = listOf(
+                navArgument("pistaId") {
+                    type = NavType.IntType
+                }
+            )) { backStackEntry ->
+            val pistaId = backStackEntry.arguments?.getInt("pistaId") ?: -1
 
             DetallePistaScreen(
                 navController = navController,
-                pistaId=pistaId
+                pistaId = pistaId
             )
 
         }
@@ -63,10 +64,14 @@ fun SportCityNavHost(
 
             ReservaFormScreen(
                 navController = navController,
-                pistaId = pistaId
+                pistaId = pistaId,
             )
         }
-
+        composable(
+            ScreenNavigation.MisReservas.route
+        ) {
+            MisReservasScreen(navController = navController)
+        }
 
 
     }
