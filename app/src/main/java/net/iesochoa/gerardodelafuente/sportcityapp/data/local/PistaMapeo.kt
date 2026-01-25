@@ -7,7 +7,8 @@ fun PistaEntity.toDomain(): Pista {
         id = this.id,
         nombre = this.nombre,
         deporte = this.deporte,
-        precioHora = this.precioHora
+        precioHora = this.precioHora,
+        descripcion = descripcion
     )
 }
 
@@ -17,7 +18,8 @@ fun Pista.toEntity(): PistaEntity {
         id = this.id,
         nombre = this.nombre,
         deporte = this.deporte,
-        precioHora = this.precioHora
+        precioHora = this.precioHora,
+        descripcion = descripcion
 
     )
 }

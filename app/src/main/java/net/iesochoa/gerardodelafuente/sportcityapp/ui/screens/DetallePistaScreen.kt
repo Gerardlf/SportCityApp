@@ -21,6 +21,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,6 +32,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.navigation.ScreenNavigation
@@ -39,18 +42,25 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorSuccess
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextSecondary
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.viewModel.PistasViewModel
 
 @Composable
 fun DetallePistaScreen(
     navController: NavController,
-    pistaId: Int
+    pistaId: Int,
+    viewModel: PistasViewModel = viewModel()
 ) {
+    val uiState by viewModel.uiState.collectAsState()
+
+    val pista = uiState.pistas.firstOrNull { it.id == pistaId }
+
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(ColorBackground)
     ) {
-        //este espacio es para la image!!!!!
+        //este espacio es para la imagen!!!!!
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -74,7 +84,7 @@ fun DetallePistaScreen(
             Spacer(modifier = Modifier.height(18.dp))
 
             Text(
-                text = "Pista Tenis $pistaId",
+                text = pista?.nombre ?: "Pista $pistaId",
                 color = ColorTextPrimary,
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
@@ -93,10 +103,23 @@ fun DetallePistaScreen(
             Spacer(modifier = Modifier.height(10.dp))
 
             Text(
-                text = "Pista de tenis de alta calidad, diseñada para ofrecer " +
-                        "una experiencia de juego óptima tanto a nivel amateur " +
-                        "como profesional. Superficie cuidada, iluminación adecuada " +
-                        "y entorno tranquilo para que cada partido se disfrute al máximo.",
+                text = pista?.descripcion ?: "Descripción no disponible",
+                color = ColorTextSecondary,
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Text(
+                text = "Precio por hora",
+                color = ColorTextPrimary,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text(
+                text = pista?.let { "${it.precioHora} €/hora" } ?: "Precio no disponible",
                 color = ColorTextSecondary,
                 style = MaterialTheme.typography.bodyMedium
             )
@@ -209,13 +232,13 @@ fun HoraChip(
     }
 }
 
-@Preview
-@Composable
-fun detallaPreview() {
-    val navController = rememberNavController()
-
-    DetallePistaScreen(
-        navController = navController,
-        pistaId = 1
-    )
-}
+//@Preview
+//@Composable
+//fun detallaPreview() {
+//    val navController = rememberNavController()
+//
+//    DetallePistaScreen(
+//        navController = navController,
+//        pistaId = 1
+//    )
+//}
