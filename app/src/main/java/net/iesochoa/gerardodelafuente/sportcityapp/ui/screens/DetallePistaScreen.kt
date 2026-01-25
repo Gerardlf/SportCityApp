@@ -19,12 +19,17 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.text.font.FontWeight
@@ -48,11 +53,14 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.viewModel.PistasViewModel
 fun DetallePistaScreen(
     navController: NavController,
     pistaId: Int,
+    nombrePista: String,
     viewModel: PistasViewModel = viewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
-
     val pista = uiState.pistas.firstOrNull { it.id == pistaId }
+
+    //para la hora
+    var horaSelec by remember { mutableStateOf("12:00") }
 
 
     Column(
@@ -84,7 +92,7 @@ fun DetallePistaScreen(
             Spacer(modifier = Modifier.height(18.dp))
 
             Text(
-                text = pista?.nombre ?: "Pista $pistaId",
+                text = nombrePista,
                 color = ColorTextPrimary,
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
@@ -150,15 +158,18 @@ fun DetallePistaScreen(
             ) {
                 HoraChip(
                     text = "10:00",
-                    backgroundColor = ColorSuccess   // verde
+                    selected = horaSelec == "10:00",
+                    onClick = { horaSelec = "10:00" }
                 )
                 HoraChip(
                     text = "12:00",
-                    backgroundColor = ColorPrimary   // azul
+                    selected = horaSelec == "12:00",
+                    onClick = { horaSelec = "12:00" }
                 )
                 HoraChip(
                     text = "13:00",
-                    backgroundColor = ColorError     // rojo
+                    selected = horaSelec == "13:00",
+                    onClick = { horaSelec = "13:00" }
                 )
             }
 
@@ -170,22 +181,31 @@ fun DetallePistaScreen(
             ) {
                 HoraChip(
                     text = "14:00",
-                    backgroundColor = ColorPrimary
+                    selected = horaSelec == "14:00",
+                    onClick = { horaSelec = "14:00" }
                 )
                 HoraChip(
                     text = "15:00",
-                    backgroundColor = ColorError
+                    selected = horaSelec == "15:00",
+                    onClick = { horaSelec = "15:00" }
                 )
                 HoraChip(
                     text = "16:00",
-                    backgroundColor = ColorPrimary
+                    selected = horaSelec == "16:00",
+                    onClick = { horaSelec = "16:00" }
                 )
             }
 
             Spacer(modifier = Modifier.height(40.dp))
             Button(
                 onClick = {
-                    navController.navigate(ScreenNavigation.ReservaForm.createRoute(pistaId))
+                    navController.navigate(
+                        ScreenNavigation.ReservaForm.createRoute(
+                            pistaId,
+                            hora = horaSelec,
+                            nombrePista=nombrePista
+                        )
+                    )
 
                 },
                 modifier = Modifier
@@ -211,24 +231,26 @@ fun DetallePistaScreen(
 @Composable
 fun HoraChip(
     text: String,
-    backgroundColor: Color,
+    selected: Boolean,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Box(
+    Surface(
         modifier = modifier
-            .width(90.dp)
-            .height(48.dp)
-            .background(
-                color = backgroundColor,
-                shape = RoundedCornerShape(16.dp)
-            ),
-        contentAlignment = Alignment.Center
+            .clip(RoundedCornerShape(16.dp))
+            .clickable { onClick() },
+        color = if (selected) ColorPrimary else ColorBackground,
+        tonalElevation = if (selected) 4.dp else 0.dp
     ) {
         Text(
             text = text,
-            color = ColorBackground,
-            fontWeight = FontWeight.Bold
+            modifier = Modifier
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+            color = if (selected) ColorBackground else ColorTextPrimary,
+            style = MaterialTheme.typography.bodyMedium,
+            fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal
         )
+
     }
 }
 

@@ -38,34 +38,43 @@ fun SportCityNavHost(
         composable(route = ScreenNavigation.PistasTenis.route) {
             PistasTennisScreen(navController = navController)
         }
+
+
         //pantalla detallePista
         composable(
             route = ScreenNavigation.DetallePista.route, arguments = listOf(
-                navArgument("pistaId") {
-                    type = NavType.IntType
-                }
+                navArgument("pistaId") { type = NavType.IntType },
+                navArgument("nombrePista") { type = NavType.StringType }
+
             )) { backStackEntry ->
             val pistaId = backStackEntry.arguments?.getInt("pistaId") ?: -1
+            val nombrePista = backStackEntry.arguments?.getString("nombrePista") ?: ""
 
             DetallePistaScreen(
                 navController = navController,
-                pistaId = pistaId
+                pistaId = pistaId,
+                nombrePista = nombrePista
             )
 
         }
-
-        //pantalla formulario
+        //formulario
         composable(
             route = ScreenNavigation.ReservaForm.route,
             arguments = listOf(
-                navArgument("pistaId") { type = NavType.IntType }
+                navArgument("pistaId") { type = NavType.IntType },
+                navArgument("hora") { type = NavType.StringType },
+                navArgument("nombrePista") { type = NavType.StringType }
             )
         ) { backStackEntry ->
             val pistaId = backStackEntry.arguments?.getInt("pistaId") ?: -1
+            val hora = backStackEntry.arguments?.getString("hora") ?: ""
+            val nombrePista = backStackEntry.arguments?.getString("nombrePista") ?: ""
 
             ReservaFormScreen(
                 navController = navController,
                 pistaId = pistaId,
+                horaSeleccionada = hora,
+                nombrePista = nombrePista
             )
         }
 

@@ -48,6 +48,8 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.viewModel.ReservasViewMode
 fun ReservaFormScreen(
     navController: NavController,
     pistaId: Int,
+    horaSeleccionada: String,
+    nombrePista : String,
 
     viewModel: ReservasViewModel = viewModel()
 ) {
@@ -89,20 +91,26 @@ fun ReservaFormScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         // Información de la pista..
+
+
+        val deporte = "Tenis"
+        val fecha ="3 de diciembre"
+
+
         Text(
-            text = "Pista seleccionada: Pista Tenis $pistaId",
+            text = "Pista seleccionada: $nombrePista",
             color = ColorTextSecondary,
             style = MaterialTheme.typography.bodyMedium
         )
 
         Text(
-            text = "Fecha: 3 de diciembre",
+            text = "Fecha: $fecha",
             color = ColorTextSecondary,
             style = MaterialTheme.typography.bodyMedium
         )
 
         Text(
-            text = "Hora: 12:00",
+            text = "Hora: $horaSeleccionada",
             color = ColorTextSecondary,
             style = MaterialTheme.typography.bodyMedium
         )
@@ -196,29 +204,16 @@ fun ReservaFormScreen(
                     telefonoError = "El teléfono es obligatorio"
                     hayUnError = true
                 }
-                if (!hayUnError) {
-
-                    navController.popBackStack()
+                if (hayUnError) {
+                    return@Button
                 }
-
-                //TODO esto tengo que cambiatlo luego , ahora mismo son fijos para probar
-
-                val deporte = "Tenis"
-                val nombrePista = "Pista tenis $pistaId"
-                val horaSelecionada = "12:00"
-                val fecha ="3 de diciembre"
-
-
 
                 // 5. Creao la reserva en el ViewModel - repositorio
                 viewModel.crearReserva(
                     pistaId = pistaId,
                     pistaNombre = nombrePista,
-
-
-                    // pongo algun valor fijo de momento para ir probando
                     fecha = fecha,
-                    hora = horaSelecionada,
+                    hora = horaSeleccionada,
                     nombreCliente = nombre,
                     telefonoCliente = telefono,
                     comentario = comentario.ifBlank { null }
@@ -227,7 +222,7 @@ fun ReservaFormScreen(
                     ScreenNavigation.ConfirmacionReserva.crearRuta(
                         deporte = deporte,
                         pistaNombre = nombrePista,
-                        hora = horaSelecionada
+                        hora = horaSeleccionada
                     ))
             },
             modifier = Modifier

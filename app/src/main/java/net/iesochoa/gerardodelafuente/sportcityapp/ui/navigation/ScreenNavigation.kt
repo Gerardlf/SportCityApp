@@ -16,11 +16,13 @@ sealed class ScreenNavigation(val route: String){
     object PistasTenis: ScreenNavigation("pistas_tenis")
 
     //pantalla detalle de pista
-    object DetallePista: ScreenNavigation("detalle_pista/{pistaId}"){
-        fun crearRuta(pistaId: Int) = "detalle_pista/$pistaId"
+    object DetallePista: ScreenNavigation("detalle_pista/{pistaId}/{nombrePista}"){
+        fun crearRuta(pistaId: Int, nombrePista:String) =
+            "detalle_pista/$pistaId/${Uri.encode(nombrePista)}"
     }
-    object ReservaForm : ScreenNavigation("reserva_formulario/{pistaId}") {
-        fun createRoute(pistaId: Int) = "reserva_formulario/$pistaId"
+    object ReservaForm : ScreenNavigation("reserva_formulario/{pistaId}/{hora}/{nombrePista}") {
+        fun createRoute(pistaId: Int, hora: String, nombrePista: String) =
+            "reserva_formulario/$pistaId/$hora/${Uri.encode(nombrePista)}"
     }
     object MisReservas : ScreenNavigation("mis_reservas")
 
@@ -32,7 +34,4 @@ sealed class ScreenNavigation(val route: String){
                     "${Uri.encode(hora)}"
         }
     }
-
-
-
 }

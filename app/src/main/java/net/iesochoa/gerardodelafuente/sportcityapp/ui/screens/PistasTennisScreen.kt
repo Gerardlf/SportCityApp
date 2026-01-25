@@ -138,7 +138,9 @@ fun PistasTennisScreen(
                                         .padding(vertical = 8.dp),
                                     onClick = {
                                         navController.navigate(
-                                            ScreenNavigation.DetallePista.crearRuta(pista.id)
+                                            ScreenNavigation.DetallePista.crearRuta(
+                                                pista.id,
+                                                nombrePista = pista.nombre)
                                         )
                                     }
 
