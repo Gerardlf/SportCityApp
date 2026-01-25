@@ -64,7 +64,7 @@ fun PistaCard(
                         fontSize = 20.sp
                     )
                     Text(
-                        text = "${pista.tipo} - ${pista.precioHora} €/hora",
+                        text = "${pista.deporte} - ${pista.precioHora} €/hora",
                         color = ColorBackground,
                         style = MaterialTheme.typography.bodySmall
                     )

@@ -1,19 +1,24 @@
 package net.iesochoa.gerardodelafuente.sportcityapp.ui.viewModel
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import net.iesochoa.gerardodelafuente.sportcityapp.SportCityApp
 import net.iesochoa.gerardodelafuente.sportcityapp.model.PistasUistate
-import net.iesochoa.gerardodelafuente.sportcityapp.data.FakePistasRepository
-import net.iesochoa.gerardodelafuente.sportcityapp.data.PistasRepository
+import net.iesochoa.gerardodelafuente.sportcityapp.data.repository.PistasRoomRepository
 
 class PistasViewModel(
-    private val repositorio: PistasRepository = FakePistasRepository()
-) : ViewModel() {
+    application: Application
+) : AndroidViewModel(application) {
+
+    //repo room
+    private val pistasRepository: PistasRoomRepository =
+        (application as SportCityApp).pistasRoomRepository
 
 
     private val _uiState = MutableStateFlow(PistasUistate())
@@ -36,7 +41,7 @@ class PistasViewModel(
             }
             try {
                 //Obtengo las pistas de tenis del repositorio
-                val pistasRepo = repositorio.getPistasTenis()
+                val pistasRepo = pistasRepository.getPistasByDeporte("tenis")
 
                 _uiState.update { estadoActual ->
                     estadoActual.copy(
