@@ -10,5 +10,5 @@ data class PistaEntity(
     val nombre: String,
     val deporte: String,
     val precioHora: Double,
-    val cubierto: Boolean
+
 )
