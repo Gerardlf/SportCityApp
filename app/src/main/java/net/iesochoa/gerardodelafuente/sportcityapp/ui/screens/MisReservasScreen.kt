@@ -20,8 +20,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,6 +31,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.Components.BottomNavBar
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.Components.ReservaItemCard
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.navigation.ScreenNavigation
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorBackground
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorSecondary
@@ -81,11 +84,17 @@ fun MisReservasScreen(
 
                 if (uiState.reservas.isEmpty()) {
                     //si la lista esta vacia
-                    Text(
-                        text = "No tienes reservas",
-                        color = ColorSecondary,
-                        style = MaterialTheme.typography.bodyMedium
-                    )
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = "No tienes reservas",
+                            color = ColorSecondary,
+                            style = MaterialTheme.typography.bodyMedium,
+                            textAlign = TextAlign.Center
+                        )
+                    }
                 } else {
                     //muestro listado de reservas
                     LazyColumn(
@@ -103,6 +112,8 @@ fun MisReservasScreen(
             }
         }
         BottomNavBar(
+            navController = navController,
+            selectedScreen = ScreenNavigation.MisReservas,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 40.dp)

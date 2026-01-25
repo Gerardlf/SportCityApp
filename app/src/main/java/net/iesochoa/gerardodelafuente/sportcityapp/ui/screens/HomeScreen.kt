@@ -295,7 +295,9 @@ fun HomeScreen(
                 }
             }
         }
-        BottomNavBar(modifier = Modifier
+        BottomNavBar(navController = navController,
+            selectedScreen = ScreenNavigation.Home,
+            modifier = Modifier
             .fillMaxWidth()
             .padding(bottom = 40.dp))
     }

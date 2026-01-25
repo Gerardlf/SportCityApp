@@ -187,6 +187,8 @@ fun PistasTennisScreen(
             }
         }
         BottomNavBar(
+            navController = navController,
+            selectedScreen = ScreenNavigation.Home,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 40.dp)
