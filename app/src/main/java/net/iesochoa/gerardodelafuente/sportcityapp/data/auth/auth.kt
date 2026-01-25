@@ -24,7 +24,6 @@ class AuthRepository(
                 }
             }
     }
-
     // Compruebo si hay alguien logueado ya
 
     fun isUserLoggedIn(): Boolean {

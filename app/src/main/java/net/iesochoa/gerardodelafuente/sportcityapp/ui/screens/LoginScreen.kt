@@ -26,6 +26,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -57,16 +58,26 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.TextFieldBorder
 fun loginScreen(
     navController: NavController,
     viewModel: LoginViewModel = viewModel()
-){
+) {
 
     val uiState by viewModel.uiState.collectAsState()
+    LaunchedEffect(key1 = uiState.isloggedIn) {
+        if (uiState.isloggedIn){
+            navController.navigate(ScreenNavigation.Home.route){
+                //Quito el loggin de la pila de llamadas para que no se pueda volver atras!!!!
+                popUpTo(ScreenNavigation.Login.route){
+                    inclusive= true
+                }
+            }
+        }
+    }
 
 
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(ColorBackground),
-    ){
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -104,7 +115,7 @@ fun loginScreen(
             //mensaje bienvenida
             Text(
                 text = stringResource(net.iesochoa.gerardodelafuente.sportcityapp.R.string.subtitulo_bienvenida),
-                color= ColorTextSecondary,
+                color = ColorTextSecondary,
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Center
             )
@@ -145,7 +156,7 @@ fun loginScreen(
                     // Texto placeholder
                     TextField(
                         value = uiState.email,
-                        onValueChange = { newEmail->
+                        onValueChange = { newEmail ->
                             viewModel.onEmailChanged(newEmail)
                         },
                         modifier = Modifier.weight(1f),
@@ -161,7 +172,7 @@ fun loginScreen(
             }
             Spacer(modifier = Modifier.height(4.dp))
 
-            uiState.emailError?.let { errorTexto->
+            uiState.emailError?.let { errorTexto ->
                 Text(
                     text = errorTexto,
                     color = ColorError,
@@ -224,7 +235,7 @@ fun loginScreen(
             }
             Spacer(modifier = Modifier.height(4.dp))
 
-            uiState.passwordError?.let { errorTexto->
+            uiState.passwordError?.let { errorTexto ->
                 Text(
                     text = errorTexto,
                     color = ColorError,
@@ -248,19 +259,10 @@ fun loginScreen(
 
             Button(
                 onClick = {
+                    //intentamos hacer login
                     viewModel.onLoginClicked()
-                    //TODO NAVEGACION CUANDO TENGA AUTENTICACION
-                    if (uiState.email.isNotBlank() &&uiState.password.isNotBlank()){
-                        navController.navigate(ScreenNavigation.Home.route){
-
-                    //PARA QUITAR LA PANTALLA DE LOGIN DE LA PILA DE NAVEGACION
-                            popUpTo(ScreenNavigation.Login.route){
-                                inclusive=true
-                            }
-                        }
-                    }
-
                 },
+                enabled = !uiState.isloading,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(60.dp),
@@ -269,17 +271,26 @@ fun loginScreen(
                     containerColor = ColorPrimary
                 )
             ) {
-                Text("Iniciar sesión",
+                Text(
+                    text = if (uiState.isloading) "Iniciando . . . . . . . " else "Iniciar sesión",
                     color = ColorBackground,
 //                    style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp,
                     letterSpacing = 0.5.sp
-                    )
-
+                )
             }
-
-
+            //mensaje de error de firebase
+            uiState.authenError?.let{ errorTexto ->
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = errorTexto,
+                    color= ColorError,
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center
+                )
+            }
 
 
         }
