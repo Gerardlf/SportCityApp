@@ -49,10 +49,12 @@ fun ReservaFormScreen(
     navController: NavController,
     pistaId: Int,
     horaSeleccionada: String,
-    nombrePista : String,
-
+    nombrePista: String,
+    fechaSeleccionada: String,
     viewModel: ReservasViewModel = viewModel()
 ) {
+
+
     var nombre by remember { mutableStateOf("") }
     var telefono by remember { mutableStateOf("") }
     var comentario by remember { mutableStateOf("") }
@@ -94,8 +96,6 @@ fun ReservaFormScreen(
 
 
         val deporte = "Tenis"
-        val fecha ="3 de diciembre"
-
 
         Text(
             text = "Pista seleccionada: $nombrePista",
@@ -104,7 +104,7 @@ fun ReservaFormScreen(
         )
 
         Text(
-            text = "Fecha: $fecha",
+            text = "Fecha: $fechaSeleccionada",
             color = ColorTextSecondary,
             style = MaterialTheme.typography.bodyMedium
         )
@@ -212,7 +212,7 @@ fun ReservaFormScreen(
                 viewModel.crearReserva(
                     pistaId = pistaId,
                     pistaNombre = nombrePista,
-                    fecha = fecha,
+                    fecha = fechaSeleccionada,
                     hora = horaSeleccionada,
                     nombreCliente = nombre,
                     telefonoCliente = telefono,
@@ -223,7 +223,8 @@ fun ReservaFormScreen(
                         deporte = deporte,
                         pistaNombre = nombrePista,
                         hora = horaSeleccionada
-                    ))
+                    )
+                )
             },
             modifier = Modifier
                 .fillMaxWidth()

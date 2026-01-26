@@ -1,7 +1,5 @@
 package net.iesochoa.gerardodelafuente.sportcityapp.ui.screens
 
-import androidx.annotation.RequiresPermission
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,14 +10,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Event
-import androidx.compose.material.icons.filled.Help
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.SportsBasketball
 import androidx.compose.material.icons.filled.SportsSoccer
 import androidx.compose.material.icons.filled.SportsTennis
@@ -27,23 +20,16 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import net.iesochoa.gerardodelafuente.sportcityapp.R
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.Components.BottomNavBar
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.navigation.ScreenNavigation
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorBackground
@@ -53,7 +39,6 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorSuccess
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextSecondary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorWarning
-import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.TextFieldBackground
 
 
 @Composable
@@ -125,6 +110,7 @@ fun HomeScreen(
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
+                //futbol
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -132,7 +118,12 @@ fun HomeScreen(
                     shape = RoundedCornerShape(20.dp),
                     colors = CardDefaults.cardColors(
                         containerColor = ColorSuccess   //transparent
-                    )
+                    ),
+                    onClick = {
+                        navController.navigate(
+                            ScreenNavigation.PistasDeporte.createRoute("Fútbol 7")
+                        )
+                    }
                 ) {
                     Box(
                         modifier = Modifier.fillMaxSize()
@@ -187,7 +178,7 @@ fun HomeScreen(
                         containerColor = ColorWarning   // naranja
                     ),
                     onClick = {
-                        navController.navigate(ScreenNavigation.PistasTenis.route)
+                        navController.navigate(ScreenNavigation.PistasDeporte.createRoute("tenis"))
                     }
                 ) {
                     Box(
@@ -227,7 +218,12 @@ fun HomeScreen(
                     shape = RoundedCornerShape(20.dp),
                     colors = CardDefaults.cardColors(
                         containerColor = ColorPrimary  // azul
-                    )
+                    ),
+                    onClick = {
+                        navController.navigate(
+                            ScreenNavigation.PistasDeporte.createRoute("Pádel")
+                        )
+                    }
                 ) {
                     Box(
                         modifier = Modifier
@@ -247,7 +243,7 @@ fun HomeScreen(
                             Spacer(modifier = Modifier.width(12.dp))
 
                             Text(
-                                text = "Padel",
+                                text = "Pádel",
                                 color = ColorBackground,
                                 style = MaterialTheme.typography.titleLarge,
                                 fontWeight = FontWeight.Bold
@@ -265,7 +261,12 @@ fun HomeScreen(
                     shape = RoundedCornerShape(20.dp),
                     colors = CardDefaults.cardColors(
                         containerColor = ColorSecondary   // morado
-                    )
+                    ),
+                    onClick = {
+                        navController.navigate(
+                            ScreenNavigation.PistasDeporte.createRoute("Basket")
+                        )
+                    }
                 ) {
                     Box(
                         modifier = Modifier

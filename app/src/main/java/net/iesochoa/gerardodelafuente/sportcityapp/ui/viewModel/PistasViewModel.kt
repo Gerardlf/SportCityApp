@@ -24,9 +24,39 @@ class PistasViewModel(
     private val _uiState = MutableStateFlow(PistasUistate())
     val uiState: StateFlow<PistasUistate> = _uiState.asStateFlow()
 
-    init {
-        cargarPistasTenis()
+    //funcion generica para cargas lso pistas
+    fun cargarPistas(deporte: String) {
+
+        viewModelScope.launch {
+            //cargando
+            _uiState.update { estado ->
+                estado.copy(
+                    isLoading = true,
+                    errorMessage = (null)
+                )
+            }
+            try {
+                //obtengo pistas por deporte
+                val pistasRepositorio = pistasRepository.getPistasByDeporte(deporte)
+
+                _uiState.update { estado ->
+                    estado.copy(
+                        isLoading = false,
+                        pistas = pistasRepositorio
+                    )
+                }
+            } catch (ex: Exception) {
+
+                _uiState.update { estado ->
+                    estado.copy(
+                        isLoading = false,
+                        errorMessage = "Error al cargar las pistas de $deporte"
+                    )
+                }
+            }
+        }
     }
+
 
     //funcion para cargar pistas
     private fun cargarPistasTenis() {

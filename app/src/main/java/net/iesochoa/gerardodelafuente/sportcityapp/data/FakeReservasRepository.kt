@@ -8,7 +8,6 @@ import net.iesochoa.gerardodelafuente.sportcityapp.model.Reserva
 
 object FakeReservasRepository {
 
-
     // 1) Lista de reservas interna privadd
     private val _reservas = MutableStateFlow<List<Reserva>>(emptyList())
     val reservas: StateFlow<List<Reserva>> = _reservas.asStateFlow()

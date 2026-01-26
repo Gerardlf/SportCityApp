@@ -62,6 +62,25 @@ fun DetallePistaScreen(
     //para la hora
     var horaSelec by remember { mutableStateOf("12:00") }
 
+    //fecha
+    data class OpcionFecha(val label: String, val valor:String)
+
+    val opcionesFecha = remember {
+        val hoy = java.time.LocalDate.now()
+        val formatter = java.time.format.DateTimeFormatter.ofPattern(
+            "d 'de' MMMM",
+            java.util.Locale("es", "ES")
+        )
+
+        listOf(
+            OpcionFecha("Hoy", hoy.format(formatter)),
+            OpcionFecha("Mañana", hoy.plusDays(1).format(formatter)),
+            OpcionFecha("Pasado mañana", hoy.plusDays(2).format(formatter))
+        )
+    }
+
+    var fechaSeleccionada by remember { mutableStateOf(opcionesFecha[0]) }
+
 
     Column(
         modifier = Modifier
@@ -145,10 +164,26 @@ fun DetallePistaScreen(
 
             //aqui pondre la fecha
             Text(
-                text = "Fecha seleccionada: 3 de diciembre",
+                text = "Fecha seleccionada: ${fechaSeleccionada.valor}",
                 color = ColorTextSecondary,
                 style = MaterialTheme.typography.bodyMedium
             )
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                opcionesFecha.forEach { opcion ->
+                    HoraChip(
+                        text = opcion.label,
+                        selected = fechaSeleccionada == opcion,
+                        onClick = { fechaSeleccionada = opcion }
+                    )
+                }
+            }
+
+
             Spacer(modifier = Modifier.height(24.dp))
 
             //  HORAS DISPONIBLES peroo de momento solo diseño
@@ -203,7 +238,8 @@ fun DetallePistaScreen(
                         ScreenNavigation.ReservaForm.createRoute(
                             pistaId,
                             hora = horaSelec,
-                            nombrePista=nombrePista
+                            nombrePista=nombrePista,
+                            fecha = fechaSeleccionada.valor
                         )
                     )
 

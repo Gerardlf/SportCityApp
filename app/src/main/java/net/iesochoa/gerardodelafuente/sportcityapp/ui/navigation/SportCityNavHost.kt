@@ -1,8 +1,6 @@
 package net.iesochoa.gerardodelafuente.sportcityapp.ui.navigation
 
-import android.app.FragmentManager
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -12,7 +10,7 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.ConfirmacionReserv
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.DetallePistaScreen
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.HomeScreen
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.MisReservasScreen
-import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.PistasTennisScreen
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.PistasDeporteScreen
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.ReservaFormScreen
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.loginScreen
 
@@ -34,9 +32,20 @@ fun SportCityNavHost(
             HomeScreen(navController = navController)
         }
 
-        //pantalla pistas de tenis
-        composable(route = ScreenNavigation.PistasTenis.route) {
-            PistasTennisScreen(navController = navController)
+        //pantalla pistas dde deporte general
+        composable(
+            route = ScreenNavigation.PistasDeporte.route,
+            arguments = listOf(
+                navArgument("deporte") { type = NavType.StringType }
+            )
+        ) { backStackEntry ->
+            val deporte = backStackEntry.arguments?.getString("deporte") ?: "tenis"
+
+            PistasDeporteScreen(
+                navController= navController,
+                deporte = deporte
+            )
+
         }
 
 
@@ -63,18 +72,21 @@ fun SportCityNavHost(
             arguments = listOf(
                 navArgument("pistaId") { type = NavType.IntType },
                 navArgument("hora") { type = NavType.StringType },
-                navArgument("nombrePista") { type = NavType.StringType }
+                navArgument("nombrePista") { type = NavType.StringType },
+                navArgument("fecha") { type = NavType.StringType }
             )
         ) { backStackEntry ->
             val pistaId = backStackEntry.arguments?.getInt("pistaId") ?: -1
             val hora = backStackEntry.arguments?.getString("hora") ?: ""
             val nombrePista = backStackEntry.arguments?.getString("nombrePista") ?: ""
+            val fecha = backStackEntry.arguments?.getString("fecha") ?: ""
 
             ReservaFormScreen(
                 navController = navController,
                 pistaId = pistaId,
                 horaSeleccionada = hora,
-                nombrePista = nombrePista
+                nombrePista = nombrePista,
+                fechaSeleccionada = fecha
             )
         }
 
