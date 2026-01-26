@@ -1,5 +1,5 @@
 package net.iesochoa.gerardodelafuente.sportcityapp.model
-
+//data clasdd de la pista
 data class Pista(
     val id: Int,
     val nombre: String,

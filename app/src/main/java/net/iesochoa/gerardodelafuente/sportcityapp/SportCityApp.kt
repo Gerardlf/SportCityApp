@@ -10,6 +10,8 @@ import net.iesochoa.gerardodelafuente.sportcityapp.data.repository.PistasRoomRep
 import net.iesochoa.gerardodelafuente.sportcityapp.data.repository.ReservasRoomRepository
 import net.iesochoa.gerardodelafuente.sportcityapp.model.Pista
 
+
+//entrada global de la aplicacion(Crea la base de datos de Room)
 class SportCityApp : Application() {
 
     //Base de datos room

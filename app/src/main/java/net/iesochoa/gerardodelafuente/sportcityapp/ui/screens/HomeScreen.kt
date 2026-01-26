@@ -40,6 +40,7 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextSecondary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorWarning
 
+//Pantalla de inicio con los deportes disponibles
 
 @Composable
 fun HomeScreen(

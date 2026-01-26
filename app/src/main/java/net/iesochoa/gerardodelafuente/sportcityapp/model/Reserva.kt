@@ -1,5 +1,6 @@
 package net.iesochoa.gerardodelafuente.sportcityapp.model
 
+//data class de reserva
 data class Reserva(
 
     val id: Int,

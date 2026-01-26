@@ -45,6 +45,7 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorWarning
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.viewModel.PistasViewModel
 
+//Pantalla que pinta las pistas segun el deporte elegido en home
 @Composable
 fun PistasDeporteScreen(
     navController: NavController,

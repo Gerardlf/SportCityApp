@@ -21,6 +21,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -42,8 +44,11 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorError
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextSecondary
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.TextFieldBackground
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.TextFieldBorder
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.TextFieldText
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.viewModel.ReservasViewModel
-
+// pantalla de formulario de la reserva
 @Composable
 fun ReservaFormScreen(
     navController: NavController,
@@ -96,8 +101,6 @@ fun ReservaFormScreen(
         // Información de la pista..
 
 
-
-
         Text(
             text = "Pista seleccionada: $nombrePista",
             color = ColorTextSecondary,
@@ -129,7 +132,16 @@ fun ReservaFormScreen(
             value = nombre,
             onValueChange = { nombre = it },
             modifier = Modifier.fillMaxWidth(),
-            singleLine = true
+            singleLine = true,
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = TextFieldBackground,
+                unfocusedContainerColor = TextFieldBackground,
+                focusedIndicatorColor = ColorPrimary,
+                unfocusedIndicatorColor = TextFieldBorder,
+                cursorColor = ColorPrimary,
+                focusedTextColor = TextFieldText,
+                unfocusedTextColor = TextFieldText
+            )
         )
         // si hay algun error en el nombre muestro un mensaje al usuario
         nombreError?.let { errorText ->
@@ -154,6 +166,15 @@ fun ReservaFormScreen(
             onValueChange = { telefono = it },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = TextFieldBackground,
+                unfocusedContainerColor = TextFieldBackground,
+                focusedIndicatorColor = ColorPrimary,
+                unfocusedIndicatorColor = TextFieldBorder,
+                cursorColor = ColorPrimary,
+                focusedTextColor = TextFieldText,
+                unfocusedTextColor = TextFieldText
+            ),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Phone
             )
@@ -181,8 +202,17 @@ fun ReservaFormScreen(
             onValueChange = { comentario = it },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(100.dp),
-            singleLine = false
+                .height(120.dp),
+            singleLine = false,
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = TextFieldBackground,
+                unfocusedContainerColor = TextFieldBackground,
+                focusedIndicatorColor = ColorPrimary,
+                unfocusedIndicatorColor = TextFieldBorder,
+                cursorColor = ColorPrimary,
+                focusedTextColor = TextFieldText,
+                unfocusedTextColor = TextFieldText
+            )
         )
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -218,7 +248,7 @@ fun ReservaFormScreen(
                     nombreCliente = nombre,
                     telefonoCliente = telefono,
                     comentario = comentario.ifBlank { null },
-                    deporte= deporte
+                    deporte = deporte
                 )
                 navController.navigate(
                     ScreenNavigation.ConfirmacionReserva.crearRuta(

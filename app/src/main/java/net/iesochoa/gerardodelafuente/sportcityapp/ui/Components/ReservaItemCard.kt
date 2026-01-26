@@ -11,12 +11,14 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.SportsBasketball
 import androidx.compose.material.icons.filled.SportsSoccer
 import androidx.compose.material.icons.filled.SportsTennis
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,15 +28,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import net.iesochoa.gerardodelafuente.sportcityapp.model.Reserva
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorError
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextSecondary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.TextFieldBackground
 
-//tarjeta que mostrara la reserva con la fecha hora y nombre del cliente
+//tarjeta que mostrara en la  reserva con la fecha hora y nombre del cliente
 @Composable
 fun ReservaItemCard(
     reserva: Reserva,
+    onDelete: () -> Unit,
     modifier: Modifier = Modifier.Companion
 ) {
 
@@ -71,7 +75,7 @@ fun ReservaItemCard(
             Spacer(modifier = Modifier.width(15.dp))
 
             Column(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.weight(1f)
             ) {
                 Text(
                     text = reserva.pistaNombre,
@@ -95,6 +99,18 @@ fun ReservaItemCard(
                 )
 
             }
+            //Papelera
+            IconButton(
+                onClick = { onDelete() }
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Delete,
+                    contentDescription = "Borrar Reserva",
+                    tint = ColorError
+                )
+
+            }
+
         }
 
     }

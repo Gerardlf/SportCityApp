@@ -15,7 +15,7 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.PistasDeporteScree
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.ReservaFormScreen
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.screens.loginScreen
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.viewModel.PistasViewModel
-
+//Composables de navegacion Navhost
 @Composable
 fun SportCityNavHost(
     navController: NavHostController

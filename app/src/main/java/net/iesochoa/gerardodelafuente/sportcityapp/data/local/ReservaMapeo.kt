@@ -15,6 +15,8 @@ fun ReservaEntity.toDomain(): Reserva =
         deporte = deporte
     )
 
+// De modelo de dominio a Entity para guardar en la base de datos
+
 fun Reserva.toEntity(): ReservaEntity=
     ReservaEntity(
         id = id,

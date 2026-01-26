@@ -3,6 +3,7 @@ package net.iesochoa.gerardodelafuente.sportcityapp.data.local
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+//entidad reservas
 @Entity(tableName= "reservas")
 data class ReservaEntity(
     @PrimaryKey(autoGenerate = true)

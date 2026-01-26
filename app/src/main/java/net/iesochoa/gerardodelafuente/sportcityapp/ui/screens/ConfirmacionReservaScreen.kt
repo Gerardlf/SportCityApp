@@ -27,7 +27,7 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorSecondary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorSuccess
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextPrimary
-
+// pantalla de confirmación de la reserva
 @Composable
 fun ConfirmacionReservaScreen(
     navController: NavController,

@@ -22,8 +22,8 @@ class ReservasRoomRepository(
     }
 
     // borrar?
-    suspend fun deleteAll() {
-        reservaDao.deleteAll()
+    suspend fun deleteReserva(reserva: Reserva) {
+        reservaDao.deleteReserva(reserva.toEntity())
     }
 
 

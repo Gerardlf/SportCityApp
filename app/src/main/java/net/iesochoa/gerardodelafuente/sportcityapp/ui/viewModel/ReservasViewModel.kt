@@ -15,7 +15,7 @@ import net.iesochoa.gerardodelafuente.sportcityapp.data.FakeReservasRepository
 import net.iesochoa.gerardodelafuente.sportcityapp.data.repository.ReservasRoomRepository
 import net.iesochoa.gerardodelafuente.sportcityapp.model.Reserva
 import net.iesochoa.gerardodelafuente.sportcityapp.model.ReservasUiState
-
+//View model de las reservas
 class ReservasViewModel(
     application: Application
 ) : AndroidViewModel(application)
@@ -64,9 +64,12 @@ class ReservasViewModel(
         viewModelScope.launch {
             reservasRepository.addReserva(reserva)
         }
+    }
 
-
-
+    fun borrarReserva(reserva: Reserva){
+        viewModelScope.launch {
+            reservasRepository.deleteReserva(reserva)
+        }
 
     }
 }

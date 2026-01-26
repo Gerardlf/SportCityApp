@@ -9,8 +9,12 @@ sealed class ScreenNavigation(val route: String) {
     //pantalla login
     object Login : ScreenNavigation("login")
 
+
+
     //pantalla inicio(con todos los depostes de sportcity)
     object Home : ScreenNavigation("home")
+
+
 
     //pantalla de listado de pistas de tenis
     object PistasDeporte : ScreenNavigation(
@@ -20,11 +24,15 @@ sealed class ScreenNavigation(val route: String) {
             "pistas_deporte/${Uri.encode(deporte)}"
     }
 
+
+
     //pantalla detalle de pista
     object DetallePista : ScreenNavigation("detalle_pista/{pistaId}/{nombrePista}") {
         fun crearRuta(pistaId: Int, nombrePista: String) =
             "detalle_pista/$pistaId/${Uri.encode(nombrePista)}"
     }
+
+
 
     object ReservaForm :
         ScreenNavigation("reserva_formulario/{pistaId}/{hora}/{nombrePista}/{fecha}/{deporte}") {
@@ -32,7 +40,11 @@ sealed class ScreenNavigation(val route: String) {
             "reserva_formulario/$pistaId/$hora/${Uri.encode(nombrePista)}/${Uri.encode(fecha)}/${Uri.encode(deporte)}"
     }
 
+
+
     object MisReservas : ScreenNavigation("mis_reservas")
+
+
 
     object ConfirmacionReserva :
         ScreenNavigation("confirmacion_reserva/{deporte}/{pistaNombre}/{hora}") {

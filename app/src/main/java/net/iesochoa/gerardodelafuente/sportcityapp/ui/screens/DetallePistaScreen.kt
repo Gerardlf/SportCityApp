@@ -49,6 +49,7 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextSecondary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.viewModel.PistasViewModel
 
+//Pantalla de detalle donde se puede reservar
 @Composable
 fun DetallePistaScreen(
     navController: NavController,

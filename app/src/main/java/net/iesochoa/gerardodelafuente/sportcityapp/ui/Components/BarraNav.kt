@@ -29,6 +29,8 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorBackground
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextSecondary
 
+//Iconos dela barra de navegación
+
 @Composable
 fun NavegItem(
     icon: ImageVector,
@@ -53,6 +55,8 @@ fun NavegItem(
         )
     }
 }
+
+//barra de navegacion del fondo de la pantalla
 @Composable
 fun BottomNavBar(navController: NavController,
                  selectedScreen: ScreenNavigation,

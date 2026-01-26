@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import net.iesochoa.gerardodelafuente.sportcityapp.model.Reserva
-
+//Repo fake para ir probando la app
 object FakeReservasRepository {
 
     // 1) Lista de reservas interna privadd

@@ -1,7 +1,7 @@
 package net.iesochoa.gerardodelafuente.sportcityapp.model
 
 import androidx.credentials.provider.AuthenticationError
-
+//Data clas  para el estado del login
 data class LoginUiState(
     val email: String = "",
     val password: String = "",

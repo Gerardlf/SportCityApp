@@ -1,6 +1,7 @@
 package net.iesochoa.gerardodelafuente.sportcityapp.data.local
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
@@ -20,8 +21,7 @@ interface ReservaDao {
 
 
     //posiblemente si me da tiempo
-    @Query("DELETE FROM reservas")
-    suspend fun deleteAll()
-
+    @Delete
+    suspend fun deleteReserva(reserva: ReservaEntity)
 
 }

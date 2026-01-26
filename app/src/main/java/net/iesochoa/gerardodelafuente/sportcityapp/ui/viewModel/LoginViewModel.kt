@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.update
 import net.iesochoa.gerardodelafuente.sportcityapp.data.auth.AuthRepository
 import net.iesochoa.gerardodelafuente.sportcityapp.model.LoginUiState
 
+
+//View model para el login
 class LoginViewModel(private val authRepository: AuthRepository = AuthRepository()) : ViewModel() {
 
 

@@ -25,12 +25,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -52,8 +55,9 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextSecondary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.TextFieldBackground
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.TextFieldBorder
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.TextFieldText
 
-
+//Pantalla del login, usa Auth de firebase con correo y contreseña
 @Composable
 fun loginScreen(
     navController: NavController,
@@ -160,13 +164,22 @@ fun loginScreen(
                             viewModel.onEmailChanged(newEmail)
                         },
                         modifier = Modifier.weight(1f),
+
                         placeholder = {
                             Text(
                                 text = "Introduce tu email o usuario",
                                 color = ColorTextSecondary
                             )
                         },
-                        singleLine = true
+                        singleLine = true,
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = TextFieldBackground,
+                            unfocusedContainerColor = TextFieldBackground,
+                            focusedIndicatorColor = ColorPrimary,
+                            unfocusedIndicatorColor = TextFieldBorder,
+                            focusedTextColor = TextFieldText,
+                            unfocusedTextColor = TextFieldText
+                        )
                     )
                 }
             }
@@ -229,6 +242,14 @@ fun loginScreen(
                         visualTransformation = PasswordVisualTransformation(),
                         keyboardOptions = KeyboardOptions(
                             keyboardType = KeyboardType.Password
+                        ),
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = TextFieldBackground,
+                            unfocusedContainerColor = TextFieldBackground,
+                            focusedIndicatorColor = ColorPrimary,
+                            unfocusedIndicatorColor = TextFieldBorder,
+                            focusedTextColor = TextFieldText,
+                            unfocusedTextColor = TextFieldText
                         )
                     )
                 }

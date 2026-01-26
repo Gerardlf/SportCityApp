@@ -12,6 +12,8 @@ import net.iesochoa.gerardodelafuente.sportcityapp.SportCityApp
 import net.iesochoa.gerardodelafuente.sportcityapp.model.PistasUistate
 import net.iesochoa.gerardodelafuente.sportcityapp.data.repository.PistasRoomRepository
 
+
+//View model para las pistas
 class PistasViewModel(
     application: Application
 ) : AndroidViewModel(application) {

@@ -38,6 +38,7 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorSecondary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.viewModel.ReservasViewModel
 
+//Pantalla mis reservas para ver las reservas efectuadas y poder borrarlas de room
 @Composable
 fun MisReservasScreen(
     navController: NavController,
@@ -104,7 +105,13 @@ fun MisReservasScreen(
 
                     ) {
                         items(uiState.reservas) { reserva ->
-                            ReservaItemCard(reserva = reserva)
+                            ReservaItemCard(
+                                reserva = reserva,
+                                onDelete = {
+                                    viewModel.borrarReserva(reserva)
+                                }
+
+                                )
                         }
                     }
                 }

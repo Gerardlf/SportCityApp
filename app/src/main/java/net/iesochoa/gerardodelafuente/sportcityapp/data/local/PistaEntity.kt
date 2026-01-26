@@ -2,6 +2,7 @@ package net.iesochoa.gerardodelafuente.sportcityapp.data.local
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+//Entidad pistas
 @Entity(tableName= "pistas")
 
 data class PistaEntity(
