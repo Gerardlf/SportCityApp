@@ -27,9 +27,9 @@ sealed class ScreenNavigation(val route: String) {
     }
 
     object ReservaForm :
-        ScreenNavigation("reserva_formulario/{pistaId}/{hora}/{nombrePista}/{fecha}") {
-        fun createRoute(pistaId: Int, hora: String, nombrePista: String, fecha: String) =
-            "reserva_formulario/$pistaId/$hora/${Uri.encode(nombrePista)}/${Uri.encode(fecha)}"
+        ScreenNavigation("reserva_formulario/{pistaId}/{hora}/{nombrePista}/{fecha}/{deporte}") {
+        fun createRoute(pistaId: Int, hora: String, nombrePista: String, fecha: String, deporte: String) =
+            "reserva_formulario/$pistaId/$hora/${Uri.encode(nombrePista)}/${Uri.encode(fecha)}/${Uri.encode(deporte)}"
     }
 
     object MisReservas : ScreenNavigation("mis_reservas")

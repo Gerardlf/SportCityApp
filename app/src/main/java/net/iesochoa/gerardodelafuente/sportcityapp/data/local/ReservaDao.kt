@@ -11,7 +11,7 @@ import androidx.room.OnConflictStrategy
 interface ReservaDao {
 
     //Todas las reservas
-    @Query("SELECT * FROM reservas ORDER BY fecha")
+    @Query("SELECT * FROM reservas ORDER BY id DESC")
     fun getAllReservas(): Flow<List<ReservaEntity>>
 
     //Insertar una reserva nueva

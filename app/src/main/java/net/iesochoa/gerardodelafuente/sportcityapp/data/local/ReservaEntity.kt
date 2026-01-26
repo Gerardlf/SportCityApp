@@ -13,6 +13,7 @@ data class ReservaEntity(
     val hora: String,
     val nombreCliente: String,
     val telefonoCliente: String,
-    val comentario: String?= null
+    val comentario: String?= null,
+    val deporte: String
 
 )

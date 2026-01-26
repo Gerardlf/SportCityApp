@@ -51,6 +51,7 @@ fun ReservaFormScreen(
     horaSeleccionada: String,
     nombrePista: String,
     fechaSeleccionada: String,
+    deporte: String,
     viewModel: ReservasViewModel = viewModel()
 ) {
 
@@ -95,7 +96,7 @@ fun ReservaFormScreen(
         // Información de la pista..
 
 
-        val deporte = "Tenis"
+
 
         Text(
             text = "Pista seleccionada: $nombrePista",

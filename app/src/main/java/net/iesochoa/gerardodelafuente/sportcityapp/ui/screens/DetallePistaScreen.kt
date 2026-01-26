@@ -54,10 +54,13 @@ fun DetallePistaScreen(
     navController: NavController,
     pistaId: Int,
     nombrePista: String,
-    viewModel: PistasViewModel = viewModel()
+    viewModel: PistasViewModel
 ) {
     val uiState by viewModel.uiState.collectAsState()
+
     val pista = uiState.pistas.firstOrNull { it.id == pistaId }
+    //deporte
+    val deporte  =pista?.deporte ?: "Desconocido"
 
     //para la hora
     var horaSelec by remember { mutableStateOf("12:00") }
@@ -239,7 +242,8 @@ fun DetallePistaScreen(
                             pistaId,
                             hora = horaSelec,
                             nombrePista=nombrePista,
-                            fecha = fechaSeleccionada.valor
+                            fecha = fechaSeleccionada.valor,
+                            deporte = deporte
                         )
                     )
 

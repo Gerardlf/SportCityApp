@@ -7,6 +7,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import net.iesochoa.gerardodelafuente.sportcityapp.data.local.SportCityDataBase
 import net.iesochoa.gerardodelafuente.sportcityapp.data.repository.PistasRoomRepository
+import net.iesochoa.gerardodelafuente.sportcityapp.data.repository.ReservasRoomRepository
 import net.iesochoa.gerardodelafuente.sportcityapp.model.Pista
 
 class SportCityApp : Application() {
@@ -19,6 +20,10 @@ class SportCityApp : Application() {
     //repositorio de pistas
     val pistasRoomRepository by lazy {
         PistasRoomRepository(database.pistaDao())
+    }
+    //repositorio de reservas
+    val reservasRoomRepository by lazy {
+        ReservasRoomRepository(database.reservaDao())
     }
 
     private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)

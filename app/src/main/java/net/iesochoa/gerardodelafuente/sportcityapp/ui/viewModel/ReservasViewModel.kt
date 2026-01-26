@@ -1,26 +1,40 @@
 package net.iesochoa.gerardodelafuente.sportcityapp.ui.viewModel
 
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import net.iesochoa.gerardodelafuente.sportcityapp.SportCityApp
 import net.iesochoa.gerardodelafuente.sportcityapp.data.FakeReservasRepository
+import net.iesochoa.gerardodelafuente.sportcityapp.data.repository.ReservasRoomRepository
 import net.iesochoa.gerardodelafuente.sportcityapp.model.Reserva
 import net.iesochoa.gerardodelafuente.sportcityapp.model.ReservasUiState
 
-class ReservasViewModel : ViewModel() {
-    private val reservasRepository = FakeReservasRepository
+class ReservasViewModel(
+    application: Application
+) : AndroidViewModel(application)
+{
+    private val reservasRepository: ReservasRoomRepository =
+        (application as SportCityApp).reservasRoomRepository
 
     private val _uiState = MutableStateFlow(ReservasUiState())
     val uiState: StateFlow<ReservasUiState> = _uiState.asStateFlow()
 
-    // Al iniciar, cojo el repo vacio
-    init {
 
-        val listaInicial = reservasRepository.reservas.value
-        _uiState.value = ReservasUiState(reservas = listaInicial)
+    init {
+        viewModelScope.launch {
+            reservasRepository.reservas.collect { lista->
+                _uiState.update { actual ->
+                    actual.copy( reservas =  lista)
+                }
+            }
+        }
     }
 
     //Crear una reserva nueva
@@ -47,15 +61,11 @@ class ReservasViewModel : ViewModel() {
         )
 
         //añado reserva
-        reservasRepository.addReserva(reserva)
-
-        //actualizamos
-
-        val listaActualizada = reservasRepository.reservas.value
-        _uiState.update { current ->
-            current.copy(reservas = listaActualizada)
-
+        viewModelScope.launch {
+            reservasRepository.addReserva(reserva)
         }
+
+
 
 
     }

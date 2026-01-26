@@ -38,6 +38,7 @@ fun ReservaItemCard(
     modifier: Modifier = Modifier.Companion
 ) {
 
+
     val sportIcon = when (reserva.deporte.lowercase()) {
         "tenis" -> Icons.Filled.SportsTennis
         "fútbol 7", "futbol 7" -> Icons.Filled.SportsSoccer

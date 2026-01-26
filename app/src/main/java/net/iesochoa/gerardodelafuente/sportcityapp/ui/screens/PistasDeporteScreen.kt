@@ -49,7 +49,7 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.viewModel.PistasViewModel
 fun PistasDeporteScreen(
     navController: NavController,
     deporte:String,
-    viewModel: PistasViewModel = viewModel()
+    viewModel: PistasViewModel
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
