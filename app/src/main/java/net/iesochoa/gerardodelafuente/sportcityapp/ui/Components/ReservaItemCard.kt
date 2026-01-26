@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.SportsBasketball
+import androidx.compose.material.icons.filled.SportsSoccer
 import androidx.compose.material.icons.filled.SportsTennis
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -35,6 +37,15 @@ fun ReservaItemCard(
     reserva: Reserva,
     modifier: Modifier = Modifier.Companion
 ) {
+
+    val sportIcon = when (reserva.deporte.lowercase()) {
+        "tenis" -> Icons.Filled.SportsTennis
+        "fútbol 7", "futbol 7" -> Icons.Filled.SportsSoccer
+        "pádel", "padel" -> Icons.Filled.SportsTennis
+        "basket" -> Icons.Filled.SportsBasketball
+        else -> Icons.Filled.SportsTennis
+    }
+
     Card(
         modifier = modifier
             .fillMaxWidth()
@@ -51,7 +62,7 @@ fun ReservaItemCard(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
-                imageVector = Icons.Filled.SportsTennis,
+                imageVector = sportIcon,
                 contentDescription = "Deporte",
                 tint = ColorTextPrimary,
                 modifier = Modifier.size(35.dp)

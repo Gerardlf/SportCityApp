@@ -14,6 +14,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.SportsBasketball
+import androidx.compose.material.icons.filled.SportsSoccer
 import androidx.compose.material.icons.filled.SportsTennis
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -37,6 +39,8 @@ import net.iesochoa.gerardodelafuente.sportcityapp.ui.navigation.ScreenNavigatio
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorBackground
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorError
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorPrimary
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorSecondary
+import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorSuccess
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorTextPrimary
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.theme.ColorWarning
 import net.iesochoa.gerardodelafuente.sportcityapp.ui.viewModel.PistasViewModel
@@ -49,8 +53,25 @@ fun PistasDeporteScreen(
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
+
     LaunchedEffect(deporte) {
         viewModel.cargarPistas(deporte)
+    }
+//Color para las cards
+    val cardColor = when (deporte.lowercase()) {
+        "tenis" -> ColorWarning
+        "fútbol 7", "futbol 7" -> ColorSuccess
+        "pádel", "padel" -> ColorPrimary
+        "basket" -> ColorSecondary
+        else -> ColorWarning
+    }
+    //Icono para las cards
+    val sportIcon = when (deporte.lowercase()) {
+        "tenis" -> Icons.Filled.SportsTennis
+        "fútbol 7", "futbol 7" -> Icons.Filled.SportsSoccer
+        "pádel", "padel" -> Icons.Filled.SportsTennis
+        "basket" -> Icons.Filled.SportsBasketball
+        else -> Icons.Filled.SportsTennis
     }
 
 
@@ -129,8 +150,8 @@ fun PistasDeporteScreen(
                             items(uiState.pistas) { pista ->
                                 PistaCard(
                                     pista = pista,
-                                    backgroundColor = ColorWarning,
-                                    icono = Icons.Filled.SportsTennis,
+                                    backgroundColor = cardColor,
+                                    icono = sportIcon,
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .height(90.dp)

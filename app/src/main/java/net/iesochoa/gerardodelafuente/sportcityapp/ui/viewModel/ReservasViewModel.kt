@@ -31,7 +31,8 @@ class ReservasViewModel : ViewModel() {
         hora: String,
         nombreCliente: String,
         telefonoCliente: String,
-        comentario: String?
+        comentario: String?,
+        deporte: String
     ) {
         val reserva = Reserva(
             id = 0,
@@ -41,7 +42,8 @@ class ReservasViewModel : ViewModel() {
             hora = hora,
             nombreCliente = nombreCliente,
             telefonoCliente = telefonoCliente,
-            comentario = comentario
+            comentario = comentario,
+            deporte = deporte
         )
 
         //añado reserva

@@ -216,7 +216,8 @@ fun ReservaFormScreen(
                     hora = horaSeleccionada,
                     nombreCliente = nombre,
                     telefonoCliente = telefono,
-                    comentario = comentario.ifBlank { null }
+                    comentario = comentario.ifBlank { null },
+                    deporte= deporte
                 )
                 navController.navigate(
                     ScreenNavigation.ConfirmacionReserva.crearRuta(
